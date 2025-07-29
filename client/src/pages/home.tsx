@@ -32,17 +32,7 @@ export default function Home() {
         <ProfileCard />
       </div>
 
-      {/* Tech Background Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-5">
-        <div 
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1920&h=1080&fit=crop')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        />
-      </div>
+
     </div>
   );
 }

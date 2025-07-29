@@ -108,19 +108,7 @@ export default function VideoBackground({
         </div>
       )}
 
-      {/* Floating Code Elements */}
-      <div className="absolute top-20 left-10 text-green-400/20 font-code text-sm animate-pulse" style={{ animationDelay: '1s' }}>
-        #include &lt;iostream&gt;
-      </div>
-      <div className="absolute top-40 right-16 text-blue-400/20 font-code text-sm animate-pulse" style={{ animationDelay: '2s' }}>
-        def main():
-      </div>
-      <div className="absolute bottom-32 left-20 text-purple-400/20 font-code text-sm animate-pulse" style={{ animationDelay: '3s' }}>
-        console.log("Hello")
-      </div>
-      <div className="absolute bottom-20 right-10 text-yellow-400/20 font-code text-sm animate-pulse" style={{ animationDelay: '4s' }}>
-        return 0;
-      </div>
+
     </div>
   );
 }
