@@ -7,12 +7,7 @@ import ViewCounter from "./view-counter";
 export default function ProfileCard() {
   return (
     <div className="max-w-md w-full animate-fade-in">
-      {/* Banner/Header */}
-      <div className="text-center mb-8 animate-slide-up">
-        <Badge variant="secondary" className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-4 border-0">
-          - Code & Create -
-        </Badge>
-      </div>
+      
       {/* Profile Card */}
       <Card className="bg-black/40 backdrop-blur-md border-gray-700/50 shadow-2xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
         <CardContent className="p-8">
