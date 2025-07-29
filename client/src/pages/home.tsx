@@ -9,7 +9,7 @@ export default function Home() {
       const isMobile = window.innerWidth < 768;
       document.documentElement.style.setProperty(
         '--video-opacity', 
-        isMobile ? '0.1' : '0.2'
+        isMobile ? '0.4' : '0.6'
       );
     };
 
@@ -24,7 +24,7 @@ export default function Home() {
       {/* Video Background */}
       <VideoBackground 
         videoUrl="https://www.youtube.com/watch?v=UFOBXZWfeBc&list=RDUFOBXZWfeBc&start_radio=1&ab_channel=wavexisor"
-        opacity={0.2}
+        opacity={0.6}
       />
 
       {/* Main Content */}
