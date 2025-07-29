@@ -13,7 +13,6 @@ export default function ProfileCard() {
           - Code & Create -
         </Badge>
       </div>
-
       {/* Profile Card */}
       <Card className="bg-black/40 backdrop-blur-md border-gray-700/50 shadow-2xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
         <CardContent className="p-8">
@@ -36,7 +35,7 @@ export default function ProfileCard() {
           {/* Name and Title */}
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold mb-2">penomovu</h1>
-            <p className="text-gray-400 text-lg mb-2">C++ and Python Developer</p>
+            <p className="text-gray-400 text-lg mb-2">C++, Python, and Web Developer.</p>
             <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
               <MapPin className="h-4 w-4" />
               Remote / Global
@@ -57,7 +56,6 @@ export default function ProfileCard() {
           <ViewCounter />
         </CardContent>
       </Card>
-
       {/* Footer */}
       <div className="text-center mt-6 animate-slide-up" style={{ animationDelay: "0.4s" }}>
         <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
