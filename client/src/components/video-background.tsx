@@ -93,17 +93,17 @@ export default function VideoBackground({
             variant="secondary"
             size="icon"
             onClick={toggleMute}
-            className="bg-black/50 hover:bg-black/70 backdrop-blur-sm border border-gray-600"
+            className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
           >
-            {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+            {isMuted ? <VolumeX className="h-4 w-4 text-muted-foreground" /> : <Volume2 className="h-4 w-4 text-primary" />}
           </Button>
           <Button
             variant="secondary"
             size="icon"
             onClick={togglePlay}
-            className="bg-black/50 hover:bg-black/70 backdrop-blur-sm border border-gray-600"
+            className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
           >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {isPlaying ? <Pause className="h-4 w-4 text-primary" /> : <Play className="h-4 w-4 text-muted-foreground" />}
           </Button>
         </div>
       )}

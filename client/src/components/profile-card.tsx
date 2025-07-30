@@ -9,31 +9,24 @@ export default function ProfileCard() {
     <div className="max-w-md w-full animate-fade-in">
       
       {/* Profile Card */}
-      <Card className="bg-black/40 backdrop-blur-md border-gray-700/50 shadow-2xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
-        <CardContent className="p-8">
+      <Card className="bg-card/30 backdrop-blur-sm border-border/30 shadow-xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
+        <CardContent className="p-10">
           {/* Profile Image */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
             <img
               src="https://i.pinimg.com/originals/8e/be/65/8ebe6576c75c0d65f345d72a4f152658.jpg"
               alt="penomovu profile picture"
-              className="w-24 h-24 rounded-full border-4 border-purple-500/50 shadow-lg hover:border-purple-400 transition-all duration-300"
+              className="w-28 h-28 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
             />
           </div>
 
-          {/* Decorative Element */}
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center animate-pulse-slow">
-              <Code2 className="text-white text-xl" />
-            </div>
-          </div>
-
           {/* Name and Title */}
-          <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold mb-2">penomovu</h1>
-            <p className="text-gray-400 text-lg mb-2">C++, Python, and Web Developer.</p>
-            <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
-              <MapPin className="h-4 w-4" />
-              Remote / Global
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-light mb-3 text-foreground">penomovu</h1>
+            <p className="text-muted-foreground text-base mb-2">C++ & Python Developer</p>
+            <p className="text-muted-foreground/70 text-sm flex items-center justify-center gap-1">
+              <MapPin className="h-3 w-3" />
+              Remote
             </p>
           </div>
 
@@ -41,8 +34,8 @@ export default function ProfileCard() {
           <SocialLinks />
 
           {/* Username Display */}
-          <div className="text-center mb-4">
-            <div className="inline-block bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-2 font-code text-sm text-gray-300">
+          <div className="text-center mb-6">
+            <div className="inline-block bg-secondary/30 border border-border/30 rounded-md px-4 py-2 font-code text-sm text-muted-foreground">
               penomovu
             </div>
           </div>
@@ -52,10 +45,10 @@ export default function ProfileCard() {
         </CardContent>
       </Card>
       {/* Footer */}
-      <div className="text-center mt-6 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-        <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
+      <div className="text-center mt-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+        <p className="text-muted-foreground/50 text-xs flex items-center justify-center gap-1">
           Made with 
-          <Heart className="h-4 w-4 text-red-500 animate-pulse" />
+          <Heart className="h-3 w-3 text-primary/70" />
           by penomovu
         </p>
       </div>
