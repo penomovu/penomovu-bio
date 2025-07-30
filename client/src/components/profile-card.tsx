@@ -40,9 +40,9 @@ export default function ProfileCard() {
               style={{
                 borderWidth: '2px',
                 borderStyle: 'solid',
-                borderColor: isImageHovered ? 'hsla(270, 60%, 55%, 0.5)' : 'hsla(270, 60%, 55%, 0.3)',
+                borderColor: isImageHovered ? 'hsla(270, 5%, 90%, 0.4)' : 'hsla(270, 60%, 55%, 0.3)',
                 boxShadow: isImageHovered 
-                  ? '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 0 20px hsla(270, 60%, 55%, 0.2)' 
+                  ? '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 0 20px hsla(270, 5%, 90%, 0.1)' 
                   : '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
               }}
               onMouseEnter={() => setIsImageHovered(true)}
