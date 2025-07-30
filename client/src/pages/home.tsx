@@ -28,7 +28,7 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4 sm:p-8">
         <ProfileCard />
       </div>
 

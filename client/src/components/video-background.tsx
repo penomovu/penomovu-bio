@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Volume2, VolumeX, Play, Pause } from "lucide-react";
+import { Volume2, VolumeX } from "lucide-react";
 
 interface VideoBackgroundProps {
   videoUrl?: string;
@@ -11,7 +11,6 @@ export default function VideoBackground({
   videoUrl = "https://www.youtube.com/watch?v=UFOBXZWfeBc", 
   opacity = 0.2 
 }: VideoBackgroundProps) {
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLIFrameElement>(null);
@@ -35,18 +34,6 @@ export default function VideoBackground({
 
     return () => clearTimeout(timer);
   }, []);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      const iframe = videoRef.current;
-      if (isPlaying) {
-        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-      } else {
-        iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -88,7 +75,7 @@ export default function VideoBackground({
       
       {/* Video Controls */}
       {showControls && (
-        <div className="absolute bottom-4 right-4 z-10 flex gap-2">
+        <div className="absolute bottom-4 right-4 z-10">
           <Button
             variant="secondary"
             size="icon"
@@ -96,14 +83,6 @@ export default function VideoBackground({
             className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
           >
             {isMuted ? <VolumeX className="h-4 w-4 text-muted-foreground" /> : <Volume2 className="h-4 w-4 text-primary" />}
-          </Button>
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={togglePlay}
-            className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
-          >
-            {isPlaying ? <Pause className="h-4 w-4 text-primary" /> : <Play className="h-4 w-4 text-muted-foreground" />}
           </Button>
         </div>
       )}
