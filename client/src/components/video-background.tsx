@@ -13,17 +13,17 @@ export default function VideoBackground({
     // Auto-play the video with sound
     if (videoRef.current) {
       const video = videoRef.current;
-      
+
       // Configure video for autoplay with sound
       video.muted = false; // Sound on by default
       video.playsInline = true;
       video.controls = false;
       video.disablePictureInPicture = true;
-      
+
       // Wait for video to be ready
       const handleCanPlay = () => {
         const playPromise = video.play();
-        
+
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
@@ -31,25 +31,25 @@ export default function VideoBackground({
             })
             .catch(error => {
               console.log('Autoplay with sound blocked, trying muted autoplay:', error);
-              
+
               // Fallback: Try muted autoplay first, then unmute on interaction
               video.muted = true;
               video.play()
                 .then(() => {
                   console.log('Muted autoplay started, will unmute on user interaction');
-                  
+
                   // Unmute on first user interaction
                   const handleUserInteraction = () => {
                     video.muted = false;
                     console.log('Video unmuted after user interaction');
-                    
+
                     // Remove listeners after unmuting
                     document.removeEventListener('click', handleUserInteraction);
                     document.removeEventListener('touchstart', handleUserInteraction);
                     document.removeEventListener('keydown', handleUserInteraction);
                     document.removeEventListener('scroll', handleUserInteraction);
                   };
-                  
+
                   // Listen for various interaction types to unmute
                   document.addEventListener('click', handleUserInteraction, { passive: true });
                   document.addEventListener('touchstart', handleUserInteraction, { passive: true });
@@ -62,7 +62,7 @@ export default function VideoBackground({
             });
         }
       };
-      
+
       // If video is already ready, try to play immediately
       if (video.readyState >= 3) {
         handleCanPlay();
@@ -85,6 +85,7 @@ export default function VideoBackground({
         muted={false} // Sound on by default
         playsInline
         preload="metadata"
+        controls={false}
       >
         <source src="/videos/plenka - cascade [escapism].mp4" type="video/mp4" />
         {/* Fallback background if video fails to load */}
