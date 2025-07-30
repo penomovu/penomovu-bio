@@ -9,7 +9,7 @@ interface VideoBackgroundProps {
 export default function VideoBackground({ 
   opacity = 0.2 
 }: VideoBackgroundProps) {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -18,12 +18,32 @@ export default function VideoBackground({
       setShowControls(true);
     }, 1000);
 
-    // Auto-play the video
+    // Try to auto-play the video, but handle the error gracefully
     if (videoRef.current) {
-      videoRef.current.play().catch(console.log);
+      videoRef.current.play().catch(() => {
+        // If autoplay fails, we'll wait for user interaction
+        console.log('Autoplay prevented, waiting for user interaction');
+      });
     }
 
-    return () => clearTimeout(timer);
+    // Add click listener to start video on first user interaction
+    const handleFirstInteraction = () => {
+      if (videoRef.current && videoRef.current.paused) {
+        videoRef.current.play().catch(console.log);
+      }
+      // Remove listener after first interaction
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
+    };
+
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('keydown', handleFirstInteraction);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
+    };
   }, []);
 
   const toggleMute = () => {
@@ -41,7 +61,7 @@ export default function VideoBackground({
         style={{ opacity }}
         autoPlay
         loop
-        muted={isMuted}
+        muted
         playsInline
       >
         <source src="/videos/plenka - cascade [escapism].mp4" type="video/mp4" />
