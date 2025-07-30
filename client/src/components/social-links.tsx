@@ -53,34 +53,11 @@ export default function SocialLinks() {
           <button
             key={link.name}
             onClick={() => handleSocialClick(link.url)}
-            className="group bg-slate-800/20 border border-slate-700/20 rounded-md p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02]"
-            style={{
-              backgroundColor: 'hsla(270, 10%, 12%, 0.2)',
-              borderColor: 'hsla(270, 10%, 15%, 0.2)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'hsla(270, 60%, 55%, 0.1)';
-              e.currentTarget.style.borderColor = 'hsla(270, 60%, 55%, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'hsla(270, 10%, 12%, 0.2)';
-              e.currentTarget.style.borderColor = 'hsla(270, 10%, 15%, 0.2)';
-            }}
+            className={`group bg-secondary/20 border border-border/20 rounded-md p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] ${link.hoverColor}`}
           >
-            <IconComponent 
-              className="text-base sm:text-lg transition-colors" 
-              style={{ color: 'hsl(270, 5%, 55%)' }}
-            />
-            <span 
-              className="text-xs sm:text-sm font-normal transition-colors"
-              style={{ color: 'hsl(270, 5%, 55%)' }}
-            >
-              {link.name}
-            </span>
-            <ExternalLink 
-              className="h-3 w-3 ml-auto opacity-0 group-hover:opacity-40 transition-opacity" 
-              style={{ color: 'hsl(270, 5%, 55%)' }}
-            />
+            <IconComponent className="text-base sm:text-lg text-muted-foreground group-hover:text-primary" />
+            <span className="text-xs sm:text-sm font-normal text-muted-foreground group-hover:text-foreground">{link.name}</span>
+            <ExternalLink className="h-3 w-3 ml-auto opacity-0 group-hover:opacity-40 transition-opacity text-muted-foreground" />
           </button>
         );
       })}
