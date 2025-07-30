@@ -3,6 +3,9 @@ import { MapPin, Heart } from "lucide-react";
 import SocialLinks from "./social-links";
 
 
+import profile_picture from "@assets/profile-picture.png";
+
+
 export default function ProfileCard() {
   return (
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
@@ -12,7 +15,7 @@ export default function ProfileCard() {
           {/* Profile Image */}
           <div className="flex justify-center mb-6 sm:mb-8">
             <img
-              src="https://i.pinimg.com/originals/8e/be/65/8ebe6576c75c0d65f345d72a4f152658.jpg"
+              src={profile_picture}
               alt="penomovu profile picture"
               className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
             />
