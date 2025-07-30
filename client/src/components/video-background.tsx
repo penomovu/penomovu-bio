@@ -9,7 +9,7 @@ interface VideoBackgroundProps {
 export default function VideoBackground({ 
   opacity = 0.2 
 }: VideoBackgroundProps) {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Start muted for autoplay
   const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -18,9 +18,56 @@ export default function VideoBackground({
       setShowControls(true);
     }, 1000);
 
-    // Auto-play the video
+    // Auto-play the video with multiple fallback attempts
     if (videoRef.current) {
-      videoRef.current.play().catch(console.log);
+      const video = videoRef.current;
+      
+      // Ensure video is properly configured for autoplay
+      video.muted = true;
+      video.playsInline = true;
+      video.controls = false;
+      video.disablePictureInPicture = true;
+      
+      // Wait for video to be ready
+      const handleCanPlay = () => {
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Video autoplay started successfully');
+            })
+            .catch(error => {
+              console.log('Autoplay blocked by browser, setting up interaction listener:', error);
+              
+              // Fallback: Try to play on any user interaction
+              const handleUserInteraction = () => {
+                video.play()
+                  .then(() => console.log('Video started after user interaction'))
+                  .catch(console.log);
+                
+                // Remove listeners after first successful interaction
+                document.removeEventListener('click', handleUserInteraction);
+                document.removeEventListener('touchstart', handleUserInteraction);
+                document.removeEventListener('keydown', handleUserInteraction);
+                document.removeEventListener('scroll', handleUserInteraction);
+              };
+              
+              // Listen for various interaction types
+              document.addEventListener('click', handleUserInteraction, { passive: true });
+              document.addEventListener('touchstart', handleUserInteraction, { passive: true });
+              document.addEventListener('keydown', handleUserInteraction, { passive: true });
+              document.addEventListener('scroll', handleUserInteraction, { passive: true });
+            });
+        }
+      };
+      
+      // If video is already ready, try to play immediately
+      if (video.readyState >= 3) {
+        handleCanPlay();
+      } else {
+        video.addEventListener('canplay', handleCanPlay, { once: true });
+      }
     }
 
     return () => clearTimeout(timer);
@@ -28,8 +75,9 @@ export default function VideoBackground({
 
   const toggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const newMutedState = !isMuted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
     }
   };
 
@@ -41,8 +89,9 @@ export default function VideoBackground({
         style={{ opacity }}
         autoPlay
         loop
-        muted={isMuted}
+        muted={true} // Always start muted for autoplay
         playsInline
+        preload="metadata"
       >
         <source src="/videos/plenka - cascade [escapism].mp4" type="video/mp4" />
         {/* Fallback background if video fails to load */}
