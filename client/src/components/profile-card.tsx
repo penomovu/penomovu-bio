@@ -17,9 +17,10 @@ export default function ProfileCard() {
           <div className="flex justify-center mb-6 sm:mb-8">
             <Avatar className="w-32 h-32 sm:w-36 sm:h-36 border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300">
               <AvatarImage 
-                src="/pfp.png" 
+                src={`/pfp.png?t=${Date.now()}`}
                 alt="penomovu profile picture"
                 className="object-cover"
+                onError={(e) => console.log('Image failed to load:', e)}
               />
               <AvatarFallback className="bg-primary/10 text-primary text-2xl font-bold">
                 PN
