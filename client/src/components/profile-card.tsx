@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { MapPin, Heart } from "lucide-react";
 import SocialLinks from "./social-links";
 
@@ -15,17 +14,11 @@ export default function ProfileCard() {
         <CardContent className="p-6 sm:p-10">
           {/* Profile Image */}
           <div className="flex justify-center mb-6 sm:mb-8">
-            <Avatar className="w-32 h-32 sm:w-36 sm:h-36 border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300">
-              <AvatarImage 
-                src={`/pfp.png?t=${Date.now()}`}
-                alt="penomovu profile picture"
-                className="object-cover"
-                onError={(e) => console.log('Image failed to load:', e)}
-              />
-              <AvatarFallback className="bg-primary/10 text-primary text-2xl font-bold">
-                PN
-              </AvatarFallback>
-            </Avatar>
+            <img
+              src="/profile-picture.png"
+              alt="penomovu profile picture"
+              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
+            />
           </div>
 
           {/* Name and Title */}
