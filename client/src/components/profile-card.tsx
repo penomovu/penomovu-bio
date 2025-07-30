@@ -20,32 +20,17 @@ export default function ProfileCard() {
             />
           </div>
 
-          {/* Unique Brand Element */}
+          {/* Decorative Element */}
           <div className="flex justify-center mb-4">
-            <div className="relative">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-600 via-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center animate-pulse-slow shadow-lg border border-purple-400/30">
-                <div className="text-white font-bold text-lg font-code">PM</div>
-              </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-black animate-pulse"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center animate-pulse-slow">
+              <Code2 className="text-white text-xl" />
             </div>
           </div>
 
           {/* Name and Title */}
           <div className="text-center mb-6">
-            <div className="relative inline-block mb-3">
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                penomovu
-              </h1>
-              <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full"></div>
-            </div>
-            <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-600/50 rounded-xl p-4 mb-3">
-              <p className="text-cyan-400 text-lg font-semibold mb-1">Full-Stack Developer</p>
-              <div className="flex justify-center gap-3 text-sm">
-                <span className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded-md font-code">C++</span>
-                <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded-md font-code">Python</span>
-                <span className="bg-cyan-500/20 text-cyan-300 px-2 py-1 rounded-md font-code">Web</span>
-              </div>
-            </div>
+            <h1 className="text-3xl font-bold mb-2">penomovu</h1>
+            <p className="text-gray-400 text-lg mb-2">C++, Python, and Web Developer.</p>
             <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
               <MapPin className="h-4 w-4" />
               Remote / Global
