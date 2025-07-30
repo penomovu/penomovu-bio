@@ -1,5 +1,7 @@
 {
-  "buildCommand": "cd client && npm install && npm run build:skip-check",
-  "outputDirectory": "client/dist",
-  "installCommand": "cd client && npm install"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build:skip-check",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "cwd": "client"
 }

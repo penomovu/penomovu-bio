@@ -13,10 +13,18 @@ This project is configured for static deployment on Vercel. The `vercel.json` co
 ### Build Process
 
 The deployment process:
-1. Installs dependencies in the `client` directory
-2. Runs `npm run build:skip-check` (Vite build without TypeScript checking)
-3. Outputs static files to `client/dist`
-4. Serves the built application with proper routing for video assets
+1. Changes working directory to `client` 
+2. Installs dependencies (`npm install`)
+3. Runs `npm run build:skip-check` (Vite build without TypeScript checking)
+4. Outputs static files to `dist` 
+5. Serves the built application with proper routing for video assets
+
+### Fixed Build Issues (Latest)
+- ✅ Added missing PostCSS configuration (`postcss.config.js`)
+- ✅ Added missing Tailwind configuration (`tailwind.config.ts`)  
+- ✅ Fixed Vite config to use ES module path resolution
+- ✅ Added `@types/node` dependency for build process
+- ✅ Updated Vercel config to use `cwd` for proper directory handling
 
 ### Manual Build (Local Testing)
 
