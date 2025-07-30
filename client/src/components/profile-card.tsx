@@ -15,7 +15,7 @@ export default function ProfileCard() {
           {/* Profile Image */}
           <div className="flex justify-center mb-6 sm:mb-8">
             <img
-              src="/profile-picture.png"
+              src="/pfp.png"
               alt="penomovu profile picture"
               className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
             />
