@@ -2,16 +2,18 @@ import { useEffect, useRef } from "react";
 
 interface VideoBackgroundProps {
   opacity?: number;
+  shouldPlay?: boolean;
 }
 
 export default function VideoBackground({ 
-  opacity = 0.2 
+  opacity = 0.2,
+  shouldPlay = false
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Auto-play the video with sound
-    if (videoRef.current) {
+    // Auto-play the video with sound only when shouldPlay is true
+    if (videoRef.current && shouldPlay) {
       const video = videoRef.current;
 
       // Configure video for autoplay with sound
@@ -70,7 +72,7 @@ export default function VideoBackground({
         video.addEventListener('canplay', handleCanPlay, { once: true });
       }
     }
-  }, []);
+  }, [shouldPlay]);
 
 
 
