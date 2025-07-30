@@ -3,9 +3,7 @@ import {
   SiGithub, 
   SiLinkedin, 
   SiX, 
-  SiStackoverflow, 
-  SiDiscord, 
-  SiYoutube 
+  SiStackoverflow
 } from "react-icons/si";
 
 interface SocialLink {
