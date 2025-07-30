@@ -3,7 +3,7 @@ import { Music } from "lucide-react";
 export default function CurrentlyPlaying() {
   return (
     <div 
-      className="fixed bottom-4 right-4 z-20 transition-all duration-300 bg-[#14111700]"
+      className="fixed bottom-4 right-4 z-20 transition-all duration-300"
       style={{
         backgroundColor: 'hsla(270, 15%, 8%, 0.8)',
         backdropFilter: 'blur(8px)',
