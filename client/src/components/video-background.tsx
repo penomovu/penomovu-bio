@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Volume2, VolumeX } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 interface VideoBackgroundProps {
   opacity?: number;
@@ -9,21 +7,15 @@ interface VideoBackgroundProps {
 export default function VideoBackground({ 
   opacity = 0.2 
 }: VideoBackgroundProps) {
-  const [isMuted, setIsMuted] = useState(true); // Start muted for autoplay
-  const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowControls(true);
-    }, 1000);
-
-    // Auto-play the video with multiple fallback attempts
+    // Auto-play the video with sound
     if (videoRef.current) {
       const video = videoRef.current;
       
-      // Ensure video is properly configured for autoplay
-      video.muted = true;
+      // Configure video for autoplay with sound
+      video.muted = false; // Sound on by default
       video.playsInline = true;
       video.controls = false;
       video.disablePictureInPicture = true;
@@ -35,29 +27,38 @@ export default function VideoBackground({
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Video autoplay started successfully');
+              console.log('Video autoplay with sound started successfully');
             })
             .catch(error => {
-              console.log('Autoplay blocked by browser, setting up interaction listener:', error);
+              console.log('Autoplay with sound blocked, trying muted autoplay:', error);
               
-              // Fallback: Try to play on any user interaction
-              const handleUserInteraction = () => {
-                video.play()
-                  .then(() => console.log('Video started after user interaction'))
-                  .catch(console.log);
-                
-                // Remove listeners after first successful interaction
-                document.removeEventListener('click', handleUserInteraction);
-                document.removeEventListener('touchstart', handleUserInteraction);
-                document.removeEventListener('keydown', handleUserInteraction);
-                document.removeEventListener('scroll', handleUserInteraction);
-              };
-              
-              // Listen for various interaction types
-              document.addEventListener('click', handleUserInteraction, { passive: true });
-              document.addEventListener('touchstart', handleUserInteraction, { passive: true });
-              document.addEventListener('keydown', handleUserInteraction, { passive: true });
-              document.addEventListener('scroll', handleUserInteraction, { passive: true });
+              // Fallback: Try muted autoplay first, then unmute on interaction
+              video.muted = true;
+              video.play()
+                .then(() => {
+                  console.log('Muted autoplay started, will unmute on user interaction');
+                  
+                  // Unmute on first user interaction
+                  const handleUserInteraction = () => {
+                    video.muted = false;
+                    console.log('Video unmuted after user interaction');
+                    
+                    // Remove listeners after unmuting
+                    document.removeEventListener('click', handleUserInteraction);
+                    document.removeEventListener('touchstart', handleUserInteraction);
+                    document.removeEventListener('keydown', handleUserInteraction);
+                    document.removeEventListener('scroll', handleUserInteraction);
+                  };
+                  
+                  // Listen for various interaction types to unmute
+                  document.addEventListener('click', handleUserInteraction, { passive: true });
+                  document.addEventListener('touchstart', handleUserInteraction, { passive: true });
+                  document.addEventListener('keydown', handleUserInteraction, { passive: true });
+                  document.addEventListener('scroll', handleUserInteraction, { passive: true });
+                })
+                .catch(fallbackError => {
+                  console.log('Even muted autoplay failed:', fallbackError);
+                });
             });
         }
       };
@@ -69,17 +70,9 @@ export default function VideoBackground({
         video.addEventListener('canplay', handleCanPlay, { once: true });
       }
     }
-
-    return () => clearTimeout(timer);
   }, []);
 
-  const toggleMute = () => {
-    if (videoRef.current) {
-      const newMutedState = !isMuted;
-      videoRef.current.muted = newMutedState;
-      setIsMuted(newMutedState);
-    }
-  };
+
 
   return (
     <div className="fixed inset-0 w-full h-full z-0">
@@ -89,7 +82,7 @@ export default function VideoBackground({
         style={{ opacity }}
         autoPlay
         loop
-        muted={true} // Always start muted for autoplay
+        muted={false} // Sound on by default
         playsInline
         preload="metadata"
       >
@@ -99,22 +92,6 @@ export default function VideoBackground({
           className="w-full h-full bg-gradient-to-br from-purple-900 via-background to-purple-800"
         />
       </video>
-      
-      {/* Video Controls */}
-      {showControls && (
-        <div className="absolute bottom-4 right-4 z-10">
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={toggleMute}
-            className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
-          >
-            {isMuted ? <VolumeX className="h-4 w-4 text-muted-foreground" /> : <Volume2 className="h-4 w-4 text-primary" />}
-          </Button>
-        </div>
-      )}
-
-
     </div>
   );
 }
