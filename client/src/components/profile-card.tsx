@@ -9,6 +9,7 @@ import { useState } from "react";
 
 export default function ProfileCard() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
 
   return (
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
@@ -35,7 +36,17 @@ export default function ProfileCard() {
             <img
               src="/profile-picture.png"
               alt="penomovu profile picture"
-              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
+              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full transition-all duration-300"
+              style={{
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                borderColor: isImageHovered ? 'hsla(270, 60%, 55%, 0.5)' : 'hsla(270, 60%, 55%, 0.3)',
+                boxShadow: isImageHovered 
+                  ? '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 0 20px hsla(270, 60%, 55%, 0.2)' 
+                  : '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+              }}
+              onMouseEnter={() => setIsImageHovered(true)}
+              onMouseLeave={() => setIsImageHovered(false)}
             />
           </div>
 
