@@ -9,11 +9,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "src": "/videos/(.*)",
-      "dest": "/videos/$1"
-    }
   ]
 }
