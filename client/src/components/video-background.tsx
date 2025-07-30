@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Volume2, VolumeX } from "lucide-react";
+import { VolumeX, Volume2 } from "lucide-react";
 
 interface VideoBackgroundProps {
   opacity?: number;
@@ -9,27 +9,23 @@ interface VideoBackgroundProps {
 export default function VideoBackground({ 
   opacity = 0.2 
 }: VideoBackgroundProps) {
-  const [isMuted, setIsMuted] = useState(false);
-  const [showControls, setShowControls] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Start muted by default
+  const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowControls(true);
-    }, 1000);
-
-    // Auto-play the video
+    // Auto-play the video (muted by default for better UX)
     if (videoRef.current) {
+      videoRef.current.muted = true;
       videoRef.current.play().catch(console.log);
     }
-
-    return () => clearTimeout(timer);
   }, []);
 
-  const toggleMute = () => {
+  const handleToggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const newMutedState = !isMuted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
     }
   };
 
@@ -51,19 +47,37 @@ export default function VideoBackground({
         />
       </video>
       
-      {/* Video Controls */}
-      {showControls && (
-        <div className="absolute bottom-4 right-4 z-10">
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={toggleMute}
-            className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
-          >
-            {isMuted ? <VolumeX className="h-4 w-4 text-muted-foreground" /> : <Volume2 className="h-4 w-4 text-primary" />}
-          </Button>
-        </div>
-      )}
+      {/* New Mute Button */}
+      <div 
+        className="absolute bottom-6 right-6 z-10 transition-all duration-300 hover:scale-110"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Button
+          variant="outline"
+          size="lg"
+          onClick={handleToggleMute}
+          className={`
+            relative overflow-hidden backdrop-blur-md transition-all duration-300
+            ${isMuted 
+              ? 'bg-red-500/20 hover:bg-red-500/30 border-red-400/40 text-red-400' 
+              : 'bg-purple-500/20 hover:bg-purple-500/30 border-purple-400/40 text-purple-400'
+            }
+            ${isHovered ? 'shadow-lg shadow-purple-500/25' : ''}
+          `}
+        >
+          <div className="flex items-center gap-2">
+            {isMuted ? (
+              <VolumeX className="h-5 w-5" />
+            ) : (
+              <Volume2 className="h-5 w-5" />
+            )}
+            <span className="text-sm font-medium">
+              {isMuted ? 'Unmute' : 'Mute'}
+            </span>
+          </div>
+        </Button>
+      </div>
 
 
     </div>
