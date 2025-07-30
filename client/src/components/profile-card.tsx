@@ -31,15 +31,7 @@ export default function ProfileCard() {
           {/* Social Links */}
           <SocialLinks />
 
-          {/* Username Display */}
-          <div className="text-center mb-4 sm:mb-6">
-            <div className="inline-block bg-secondary/30 border border-border/30 rounded-md px-3 sm:px-4 py-1.5 sm:py-2 font-code text-xs sm:text-sm text-muted-foreground">
-              penomovu
-            </div>
-          </div>
-
-
-        </CardContent>
+          </CardContent>
       </Card>
       {/* Footer */}
       <div className="text-center mt-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
