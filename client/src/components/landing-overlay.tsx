@@ -47,7 +47,7 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
           className="text-sm sm:text-base mb-8 opacity-70"
           style={{ color: 'hsl(270, 5%, 65%)' }}
         >
-          C++ & Python Developer
+          C++, Python & Web Developer
         </p>
         
         <button

@@ -57,11 +57,11 @@ export default function ProfileCard() {
                 color: isHovered ? 'hsl(270, 60%, 65%)' : 'hsl(270, 5%, 55%)'
               }}
             >
-              C++ & Python Developer
+              C++, Python & Web Developer
             </p>
             <p className="text-muted-foreground/70 text-xs sm:text-sm flex items-center justify-center gap-1">
               <MapPin className="h-3 w-3" />
-              Remote
+              France
             </p>
           </div>
 
