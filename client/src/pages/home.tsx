@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import VideoBackground from "@/components/video-background";
 import ProfileCard from "@/components/profile-card";
 import LandingOverlay from "@/components/landing-overlay";
+import CurrentlyPlaying from "@/components/currently-playing";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -227,6 +228,9 @@ export default function Home() {
         >
           <ProfileCard />
         </div>
+        
+        {/* Currently Playing */}
+        {hasEntered && <CurrentlyPlaying />}
         
         {/* Landing Overlay */}
         {!hasEntered && (
