@@ -6,7 +6,6 @@ import SocialLinks from "./social-links";
 export default function ProfileCard() {
   return (
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
-      
       {/* Profile Card */}
       <Card className="bg-card/30 backdrop-blur-sm border-border/30 shadow-xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
         <CardContent className="p-6 sm:p-10">
@@ -44,7 +43,7 @@ export default function ProfileCard() {
       </Card>
       {/* Footer */}
       <div className="text-center mt-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-        <p className="text-muted-foreground/50 text-xs flex items-center justify-center gap-1">
+        <p className="text-xs flex items-center justify-center gap-1 text-[#e6e4e721]">
           Made with 
           <Heart className="h-3 w-3 text-primary/70" />
           by penomovu
