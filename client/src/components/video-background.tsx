@@ -73,12 +73,12 @@ export default function VideoBackground({
       
       {/* Video Controls */}
       {showControls && (
-        <div className="absolute bottom-4 right-4 z-10">
+        <div className="absolute bottom-4 right-4 z-50 pointer-events-auto">
           <Button
             variant="secondary"
             size="icon"
             onClick={toggleMute}
-            className="bg-background/30 hover:bg-background/50 backdrop-blur-sm border border-border/30"
+            className="bg-background/70 hover:bg-background/90 backdrop-blur-sm border border-border/50 shadow-lg cursor-pointer pointer-events-auto"
           >
             {isMuted ? <VolumeX className="h-4 w-4 text-muted-foreground" /> : <Volume2 className="h-4 w-4 text-primary" />}
           </Button>
