@@ -9,7 +9,7 @@ interface VideoBackgroundProps {
 export default function VideoBackground({ 
   opacity = 0.2 
 }: VideoBackgroundProps) {
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
