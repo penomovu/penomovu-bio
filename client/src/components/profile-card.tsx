@@ -14,7 +14,7 @@ export default function ProfileCard() {
             <img
               src="https://i.pinimg.com/originals/8e/be/65/8ebe6576c75c0d65f345d72a4f152658.jpg"
               alt="penomovu profile picture"
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
+              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
             />
           </div>
 
