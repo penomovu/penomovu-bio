@@ -23,7 +23,6 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Video Background */}
       <VideoBackground 
-        videoUrl="https://www.youtube.com/watch?v=UFOBXZWfeBc&list=RDUFOBXZWfeBc&start_radio=1&ab_channel=wavexisor"
         opacity={0.6}
       />
 

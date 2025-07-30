@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a modern, interactive personal bio website for "penomovu", a C++ and Python developer. The application is built as a full-stack web application with a React frontend and Express.js backend, designed to showcase personal information and social media links in an engaging, visually appealing format.
+This is a modern, minimalist personal bio website for "penomovu", a C++ and Python developer. The application is built as a fully static React application designed for Netlify deployment, featuring a local video background and social media links in a dark purple theme.
 
 ## User Preferences
 
@@ -19,48 +19,27 @@ Preferred communication style: Simple, everyday language.
 - **Build Tool**: Vite with React plugin
 - **Design System**: Dark theme with purple accent colors, modern glassmorphism effects
 
-### Backend Architecture
-- **Framework**: Express.js with TypeScript
-- **Runtime**: Node.js with ES modules
-- **Development**: tsx for TypeScript execution
-- **Build**: esbuild for production bundling
-- **API**: RESTful API structure (currently minimal implementation)
-
-### Database Layer
-- **ORM**: Drizzle ORM
-- **Database**: PostgreSQL (configured for Neon Database)
-- **Migrations**: Drizzle Kit for schema management
-- **Schema Location**: `shared/schema.ts` for type sharing between frontend and backend
+### Static Architecture
+- **Type**: Fully static React application
+- **Video**: Local MP4 file ("plenka - cascade [escapism].mp4")
+- **Build**: Vite for production bundling
+- **Deployment**: Netlify with automated builds
 
 ## Key Components
 
 ### Frontend Components
 1. **ProfileCard**: Main bio display with profile image, name, title, and social links
-2. **VideoBackground**: YouTube video background with controls for play/pause and mute
-3. **SocialLinks**: Interactive social media links with hover effects
-4. **ViewCounter**: Animated view counter with loading states
-5. **UI Components**: Comprehensive set of shadcn/ui components for consistent design
-
-### Backend Components
-1. **Storage Interface**: Abstract storage layer with in-memory implementation
-2. **Route Registration**: Modular route setup for API endpoints
-3. **Vite Integration**: Development server integration for HMR
-
-### Shared Components
-1. **Schema Definitions**: Shared TypeScript types and Zod validation schemas
-2. **Database Models**: User model with username/password fields
+2. **VideoBackground**: Local video background with mute controls
+3. **SocialLinks**: Interactive social media links (GitHub, LinkedIn, X, Stack Overflow)
+4. **UI Components**: Minimalist shadcn/ui components for consistent design
 
 ## Data Flow
 
 ### Current Implementation
 1. **Static Content**: Profile information is hardcoded in components
-2. **View Counter**: Simulated with local state and timers
-3. **Social Links**: Static configuration with external URL navigation
-4. **Background Video**: YouTube embed with iframe messaging for controls
-
-### Database Schema
-- **Users Table**: Basic user model with ID, username, and password fields
-- **Storage Layer**: Memory-based storage with CRUD operations for users
+2. **Social Links**: Static configuration with external URL navigation (4 essential platforms)
+3. **Background Video**: Local MP4 file with HTML5 video controls
+4. **Theme**: Dark purple minimalist design
 
 ## External Dependencies
 

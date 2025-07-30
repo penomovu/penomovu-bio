@@ -1,24 +1,22 @@
 # penomovu - Personal Bio Website
 
-A modern, interactive personal bio website built with React, featuring a YouTube video background and social media links.
+A modern, minimalist personal bio website built with React, featuring a local video background and social media links.
 
 ## Features
 
-- 🎥 YouTube video background with audio controls
+- 🎥 Local video background with audio controls (plenka - cascade [escapism])
 - 📱 Responsive design for mobile and desktop
 - 🔗 Interactive social media links
-- 🎨 Modern dark theme with purple/blue accents
+- 🎨 Modern dark purple minimalist theme
 - ⚡ Fast loading with Vite
-- 🚀 Deployed on GitHub Pages
+- 🚀 Ready for Netlify deployment (fully static)
 
 ## Tech Stack
 
 - **Frontend**: React 18 + TypeScript
 - **Styling**: TailwindCSS + Shadcn/ui
 - **Build Tool**: Vite
-- **Backend**: Express.js
-- **Database**: PostgreSQL with Drizzle ORM
-- **Deployment**: GitHub Pages
+- **Deployment**: Netlify (static)
 
 ## Quick Start
 
@@ -30,6 +28,7 @@ cd penomovu-bio
 
 2. Install dependencies:
 ```bash
+cd client
 npm install
 ```
 
@@ -42,6 +41,23 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deployment to Netlify
+
+### Option 1: Automated (Recommended)
+1. Push your code to GitHub
+2. Connect your GitHub repo to Netlify
+3. Netlify will automatically detect the `netlify.toml` configuration
+4. Deploy!
+
+### Option 2: Manual
+1. Run the build script: `./deploy-static.sh`
+2. Upload the `client/dist` folder to Netlify
+
+### Build Settings for Netlify
+- **Build command**: `cd client && npm install && npm run build`
+- **Publish directory**: `client/dist`
+- **Node version**: 20
 
 ## Social Links
 
