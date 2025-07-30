@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import VideoBackground from "@/components/video-background";
 import ProfileCard from "@/components/profile-card";
 import LandingOverlay from "@/components/landing-overlay";
-import CurrentlyPlaying from "@/components/currently-playing";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -106,64 +105,6 @@ export default function Home() {
           transform: scale(0.95);
         }
         
-        .hover\\:scale-\\[1\\.05\\]:hover {
-          transform: scale(1.05);
-        }
-        
-        .hover\\:-translate-y-2:hover {
-          transform: translateY(-0.5rem);
-        }
-        
-        .hover\\:shadow-2xl:hover {
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .border-black {
-          border-color: black;
-        }
-        
-        .backdrop-blur-md {
-          backdrop-filter: blur(12px);
-        }
-        
-        /* Currently Playing Animation */
-        .wave-bar {
-          display: inline-block;
-          width: 2px;
-          height: 8px;
-          background: linear-gradient(to top, hsl(270, 60%, 55%), hsl(270, 60%, 70%));
-          margin: 0 1px;
-          animation: wave 1s ease-in-out infinite;
-        }
-        
-        .wave-bar:nth-child(1) { animation-delay: 0s; }
-        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
-        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
-        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
-        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
-        
-        @keyframes wave {
-          0%, 40%, 100% {
-            transform: scaleY(0.4);
-          }
-          20% {
-            transform: scaleY(1);
-          }
-        }
-        
-        .floating {
-          animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        
         /* Utility classes */
         .fixed { position: fixed; }
         .absolute { position: absolute; }
@@ -185,14 +126,9 @@ export default function Home() {
         .overflow-x-hidden { overflow-x: hidden; }
         .rounded-full { border-radius: 9999px; }
         .rounded-md { border-radius: 0.375rem; }
-        .rounded-lg { border-radius: 0.5rem; }
         .border-2 { border-width: 2px; }
         .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
-        .z-20 { z-index: 20; }
-        .bottom-4 { bottom: 1rem; }
-        .left-4 { left: 1rem; }
-        .gap-px { gap: 1px; }
         .font-light { font-weight: 300; }
         .font-medium { font-weight: 500; }
         .font-normal { font-weight: 400; }
@@ -291,9 +227,6 @@ export default function Home() {
         >
           <ProfileCard />
         </div>
-        
-        {/* Currently Playing */}
-        {hasEntered && <CurrentlyPlaying />}
         
         {/* Landing Overlay */}
         {!hasEntered && (

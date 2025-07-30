@@ -10,26 +10,14 @@ export default function ProfileCard() {
   return (
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
       {/* Profile Card */}
-      <Card 
-        className="backdrop-blur-md shadow-xl animate-slide-up floating transition-all duration-300 hover:scale-[1.05] hover:-translate-y-2 hover:shadow-2xl" 
-        style={{ 
-          animationDelay: "0.2s",
-          backgroundColor: 'hsla(270, 15%, 8%, 0.4)',
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: 'black'
-        }}
-      >
+      <Card className="bg-card/30 backdrop-blur-sm border-border/30 shadow-xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
         <CardContent className="p-6 sm:p-10">
           {/* Profile Image */}
           <div className="flex justify-center mb-6 sm:mb-8">
             <img
               src="/profile-picture.png"
               alt="penomovu profile picture"
-              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 shadow-lg transition-all duration-300"
-              style={{
-                borderColor: 'black'
-              }}
+              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full border-2 border-primary/30 shadow-lg hover:border-primary/50 transition-all duration-300"
             />
           </div>
 
