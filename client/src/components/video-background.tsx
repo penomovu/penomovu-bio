@@ -61,7 +61,7 @@ export default function VideoBackground({
         style={{ opacity }}
         autoPlay
         loop
-        muted
+        muted={isMuted}
         playsInline
       >
         <source src="/videos/plenka - cascade [escapism].mp4" type="video/mp4" />
