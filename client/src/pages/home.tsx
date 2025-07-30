@@ -20,7 +20,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-slate-900 text-slate-100 overflow-x-hidden" style={{ backgroundColor: 'hsl(270, 15%, 5%)', color: 'hsl(270, 5%, 90%)' }}>
       {/* Video Background */}
       <VideoBackground 
         opacity={0.6}
@@ -30,8 +30,6 @@ export default function Home() {
       <div className="relative z-10 min-h-screen flex items-center justify-center p-4 sm:p-8">
         <ProfileCard />
       </div>
-
-
     </div>
   );
 }
