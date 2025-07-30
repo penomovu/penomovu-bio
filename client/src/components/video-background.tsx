@@ -76,9 +76,12 @@ export default function VideoBackground({
 
   return (
     <div className="fixed inset-0 w-full h-full z-0">
+      {/* Fallback background - always present */}
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-900 via-slate-900 to-purple-800" />
+      
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{ opacity }}
         autoPlay
         loop
@@ -86,12 +89,18 @@ export default function VideoBackground({
         playsInline
         preload="metadata"
         controls={false}
+        onError={() => {
+          console.log('Video failed to load, using fallback background');
+        }}
+        onLoadStart={() => {
+          console.log('Video loading started');
+        }}
+        onCanPlay={() => {
+          console.log('Video can play');
+        }}
       >
+        <source src="/videos/plenka%20-%20cascade%20%5Bescapism%5D.mp4" type="video/mp4" />
         <source src="/videos/plenka - cascade [escapism].mp4" type="video/mp4" />
-        {/* Fallback background if video fails to load */}
-        <div 
-          className="w-full h-full bg-gradient-to-br from-purple-900 via-background to-purple-800"
-        />
       </video>
     </div>
   );
