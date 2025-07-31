@@ -98,29 +98,49 @@ export default function ProfileCard() {
             {/* Name and Title */}
             <div className="text-center mb-6 sm:mb-8">
               <h1 
-                className="text-3xl sm:text-4xl font-light mb-2 sm:mb-3 transition-colors duration-300"
+                className="text-3xl sm:text-4xl font-light mb-2 sm:mb-3 transition-all duration-500"
                 style={{ 
-                  color: 'hsl(270, 5%, 90%)'
+                  color: isHovered ? '#ffffff' : 'hsl(270, 5%, 90%)',
+                  textShadow: isHovered 
+                    ? '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4)' 
+                    : 'none',
+                  filter: isHovered ? 'brightness(1.2)' : 'brightness(1)'
                 }}
               >
                 penomovu
               </h1>
               <p 
-                className="text-sm sm:text-base mb-2 transition-colors duration-300"
+                className="text-sm sm:text-base mb-2 transition-all duration-500"
                 style={{ 
-                  color: 'hsl(270, 5%, 55%)'
+                  color: isHovered ? 'rgba(255, 255, 255, 0.9)' : 'hsl(270, 5%, 55%)',
+                  textShadow: isHovered 
+                    ? '0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4)' 
+                    : 'none'
                 }}
               >
                 C++, Python & Web Developer
               </p>
-              <p className="text-muted-foreground/70 text-xs sm:text-sm flex items-center justify-center gap-1">
-                <MapPin className="h-3 w-3" />
+              <p 
+                className="text-muted-foreground/70 text-xs sm:text-sm flex items-center justify-center gap-1 transition-all duration-500"
+                style={{
+                  color: isHovered ? 'rgba(255, 255, 255, 0.8)' : undefined,
+                  textShadow: isHovered 
+                    ? '0 0 10px rgba(255, 255, 255, 0.5)' 
+                    : 'none'
+                }}
+              >
+                <MapPin 
+                  className="h-3 w-3" 
+                  style={{
+                    filter: isHovered ? 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.6))' : 'none'
+                  }}
+                />
                 France
               </p>
             </div>
 
             {/* Social Links */}
-            <SocialLinks />
+            <SocialLinks parentHovered={isHovered} />
           </CardContent>
         </Card>
       </motion.div>
