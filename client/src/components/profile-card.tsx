@@ -83,9 +83,9 @@ export default function ProfileCard() {
                 style={{
                   borderWidth: '3px',
                   borderStyle: 'solid',
-                  borderColor: isHovered || isImageHovered ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.1)',
+                  borderColor: isHovered || isImageHovered ? 'hsl(270, 60%, 55%)' : 'rgba(255, 255, 255, 0.1)',
                   boxShadow: isHovered || isImageHovered 
-                    ? '0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 90px rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1)' 
+                    ? '0 0 30px hsl(270, 60%, 55%), 0 0 60px hsla(270, 60%, 55%, 0.6), 0 0 90px hsla(270, 60%, 55%, 0.3), inset 0 0 20px hsla(270, 60%, 55%, 0.1)' 
                     : '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
                   filter: isHovered || isImageHovered ? 'brightness(1.2) contrast(1.1)' : 'brightness(1)',
                   transform: isImageHovered ? 'scale(1.05)' : 'scale(1)'
@@ -100,9 +100,9 @@ export default function ProfileCard() {
               <h1 
                 className="text-3xl sm:text-4xl font-light mb-2 sm:mb-3 transition-all duration-500"
                 style={{ 
-                  color: isHovered ? '#ffffff' : 'hsl(270, 5%, 90%)',
+                  color: isHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 90%)',
                   textShadow: isHovered 
-                    ? '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4)' 
+                    ? '0 0 20px hsl(270, 60%, 55%), 0 0 40px hsla(270, 60%, 55%, 0.6), 0 0 60px hsla(270, 60%, 55%, 0.4)' 
                     : 'none',
                   filter: isHovered ? 'brightness(1.2)' : 'brightness(1)'
                 }}
@@ -112,9 +112,9 @@ export default function ProfileCard() {
               <p 
                 className="text-sm sm:text-base mb-2 transition-all duration-500"
                 style={{ 
-                  color: isHovered ? 'rgba(255, 255, 255, 0.9)' : 'hsl(270, 5%, 55%)',
+                  color: isHovered ? 'hsl(270, 60%, 65%)' : 'hsl(270, 5%, 55%)',
                   textShadow: isHovered 
-                    ? '0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4)' 
+                    ? '0 0 15px hsl(270, 60%, 55%), 0 0 30px hsla(270, 60%, 55%, 0.4)' 
                     : 'none'
                 }}
               >
@@ -123,16 +123,16 @@ export default function ProfileCard() {
               <p 
                 className="text-muted-foreground/70 text-xs sm:text-sm flex items-center justify-center gap-1 transition-all duration-500"
                 style={{
-                  color: isHovered ? 'rgba(255, 255, 255, 0.8)' : undefined,
+                  color: isHovered ? 'hsl(270, 60%, 65%)' : undefined,
                   textShadow: isHovered 
-                    ? '0 0 10px rgba(255, 255, 255, 0.5)' 
+                    ? '0 0 10px hsl(270, 60%, 55%)' 
                     : 'none'
                 }}
               >
                 <MapPin 
                   className="h-3 w-3" 
                   style={{
-                    filter: isHovered ? 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.6))' : 'none'
+                    filter: isHovered ? 'drop-shadow(0 0 8px hsl(270, 60%, 55%))' : 'none'
                   }}
                 />
                 France

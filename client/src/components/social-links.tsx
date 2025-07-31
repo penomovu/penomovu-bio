@@ -67,11 +67,13 @@ export default function SocialLinks({ parentHovered = false }: SocialLinksProps)
               backgroundColor: isHovered || parentHovered ? 'hsla(270, 60%, 55%, 0.1)' : 'hsla(270, 10%, 12%, 0.2)',
               borderWidth: '1px',
               borderStyle: 'solid',
-              borderColor: isHovered || parentHovered ? 'rgba(255, 255, 255, 0.4)' : 'hsla(270, 10%, 15%, 0.2)',
+              borderColor: isHovered ? 'rgba(255, 255, 255, 0.6)' : parentHovered ? 'hsl(270, 60%, 55%)' : 'hsla(270, 10%, 15%, 0.2)',
               transform: isHovered ? 'scale(1.02)' : 'scale(1)',
-              boxShadow: isHovered || parentHovered 
-                ? '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)' 
-                : 'none'
+              boxShadow: isHovered 
+                ? '0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3)' 
+                : parentHovered 
+                  ? '0 0 20px hsl(270, 60%, 55%), 0 0 40px hsla(270, 60%, 55%, 0.3)' 
+                  : 'none'
             }}
             onMouseEnter={() => setHoveredLink(link.name)}
             onMouseLeave={() => setHoveredLink(null)}
@@ -79,8 +81,12 @@ export default function SocialLinks({ parentHovered = false }: SocialLinksProps)
             <div
               className="text-base sm:text-lg transition-all duration-500"
               style={{
-                color: isHovered || parentHovered ? '#ffffff' : 'hsl(270, 5%, 55%)',
-                filter: isHovered || parentHovered ? 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.6))' : 'none'
+                color: isHovered ? '#ffffff' : parentHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 55%)',
+                filter: isHovered 
+                  ? 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))' 
+                  : parentHovered 
+                    ? 'drop-shadow(0 0 8px hsl(270, 60%, 55%))' 
+                    : 'none'
               }}
             >
               <IconComponent />
@@ -88,10 +94,12 @@ export default function SocialLinks({ parentHovered = false }: SocialLinksProps)
             <span 
               className="text-xs sm:text-sm font-normal transition-all duration-500"
               style={{
-                color: isHovered || parentHovered ? '#ffffff' : 'hsl(270, 5%, 55%)',
-                textShadow: isHovered || parentHovered 
-                  ? '0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3)' 
-                  : 'none'
+                color: isHovered ? '#ffffff' : parentHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 55%)',
+                textShadow: isHovered 
+                  ? '0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5)' 
+                  : parentHovered 
+                    ? '0 0 15px hsl(270, 60%, 55%), 0 0 30px hsla(270, 60%, 55%, 0.4)' 
+                    : 'none'
               }}
             >
               {link.name}
@@ -99,9 +107,13 @@ export default function SocialLinks({ parentHovered = false }: SocialLinksProps)
             <ExternalLink 
               className="h-3 w-3 ml-auto transition-all duration-500" 
               style={{
-                opacity: isHovered ? 0.6 : parentHovered ? 0.4 : 0,
-                color: isHovered || parentHovered ? '#ffffff' : 'hsl(270, 5%, 55%)',
-                filter: isHovered || parentHovered ? 'drop-shadow(0 0 6px rgba(255, 255, 255, 0.5))' : 'none'
+                opacity: isHovered ? 0.7 : parentHovered ? 0.4 : 0,
+                color: isHovered ? '#ffffff' : parentHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 55%)',
+                filter: isHovered 
+                  ? 'drop-shadow(0 0 6px rgba(255, 255, 255, 0.8))' 
+                  : parentHovered 
+                    ? 'drop-shadow(0 0 6px hsl(270, 60%, 55%))' 
+                    : 'none'
               }}
             />
           </button>
