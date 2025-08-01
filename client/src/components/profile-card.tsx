@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart } from "lucide-react";
+import { MapPin, Heart, MessageCircle, Copy } from "lucide-react";
 import SocialLinks from "./social-links";
 import { useState } from "react";
 
@@ -10,6 +10,14 @@ import { useState } from "react";
 export default function ProfileCard() {
   const [isHovered, setIsHovered] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
+  const [showDiscordTooltip, setShowDiscordTooltip] = useState(false);
+  const [discordCopied, setDiscordCopied] = useState(false);
+
+  const handleDiscordCopy = () => {
+    navigator.clipboard.writeText('ronioza');
+    setDiscordCopied(true);
+    setTimeout(() => setDiscordCopied(false), 2000);
+  };
 
   return (
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
@@ -50,7 +58,18 @@ export default function ProfileCard() {
         <CardContent className="p-6 sm:p-10 relative z-10">
           {/* Profile Image */}
           <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="relative">
+            <div 
+              className="relative cursor-pointer"
+              onMouseEnter={() => {
+                setIsImageHovered(true);
+                setShowDiscordTooltip(true);
+              }}
+              onMouseLeave={() => {
+                setIsImageHovered(false);
+                setShowDiscordTooltip(false);
+                setDiscordCopied(false);
+              }}
+            >
               <img
                 src="/profile-picture.png"
                 alt="penomovu profile picture"
@@ -64,8 +83,6 @@ export default function ProfileCard() {
                     : '0 8px 25px hsla(0, 0%, 0%, 0.2)',
                   transform: isImageHovered ? 'scale(1.05)' : 'scale(1)'
                 }}
-                onMouseEnter={() => setIsImageHovered(true)}
-                onMouseLeave={() => setIsImageHovered(false)}
               />
               
               {/* Animated ring around profile image */}
@@ -81,6 +98,71 @@ export default function ProfileCard() {
                   WebkitMaskComposite: 'xor'
                 }}
               />
+
+              {/* Discord Contact Tooltip */}
+              <div 
+                className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-300 pointer-events-none"
+                style={{
+                  opacity: showDiscordTooltip ? 1 : 0,
+                  transform: showDiscordTooltip 
+                    ? 'translateX(-50%) translateY(0) scale(1)' 
+                    : 'translateX(-50%) translateY(10px) scale(0.8)',
+                  zIndex: 50
+                }}
+              >
+                <div 
+                  className="relative px-4 py-3 rounded-lg pointer-events-auto cursor-pointer"
+                  style={{
+                    background: 'var(--glass-hover-bg)',
+                    backdropFilter: 'blur(20px) saturate(180%)',
+                    border: '1px solid var(--glass-hover-border)',
+                    boxShadow: '0 8px 32px hsla(0, 0%, 0%, 0.4), 0 0 20px var(--glow-primary)',
+                    minWidth: '180px'
+                  }}
+                  onClick={handleDiscordCopy}
+                >
+                  {/* Tooltip arrow */}
+                  <div 
+                    className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0"
+                    style={{
+                      borderLeft: '8px solid transparent',
+                      borderRight: '8px solid transparent',
+                      borderBottom: '8px solid var(--glass-hover-border)'
+                    }}
+                  />
+                  
+                  <div className="flex items-center gap-2 justify-center">
+                    <MessageCircle 
+                      className="h-4 w-4" 
+                      style={{ 
+                        color: '#5865F2',
+                        filter: 'drop-shadow(0 0 6px #5865F2)'
+                      }}
+                    />
+                    <div className="text-center">
+                      <div 
+                        className="text-sm font-medium"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        {discordCopied ? 'Copied!' : 'Contact on Discord'}
+                      </div>
+                      <div 
+                        className="text-xs font-mono"
+                        style={{ 
+                          color: '#5865F2',
+                          textShadow: '0 0 8px #5865F2'
+                        }}
+                      >
+                        ronioza
+                      </div>
+                    </div>
+                    <Copy 
+                      className="h-3 w-3 opacity-60" 
+                      style={{ color: 'var(--muted-foreground)' }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
