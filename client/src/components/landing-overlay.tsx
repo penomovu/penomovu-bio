@@ -34,58 +34,49 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
       {/* Content */}
       <div className="relative z-10 text-center px-4">
         <h1 
-          className="text-4xl sm:text-6xl font-light mb-4 animate-pulse"
+          className="text-4xl sm:text-6xl font-light mb-4 animate-pulse text-gradient"
           style={{ 
-            color: 'hsl(270, 5%, 90%)',
-            textShadow: '0 0 20px hsla(270, 60%, 55%, 0.3)'
+            textShadow: '0 0 30px hsla(270, 85%, 60%, 0.4)'
           }}
         >
           penomovu
         </h1>
         
         <p 
-          className="text-sm sm:text-base mb-8 opacity-70"
-          style={{ color: 'hsl(270, 5%, 65%)' }}
+          className="text-sm sm:text-base mb-2 opacity-70"
+          style={{ color: 'hsl(270, 8%, 88%)' }}
         >
-          C++, Python & Web Developer
+          Senior Software Developer
+        </p>
+        
+        <p 
+          className="text-xs sm:text-sm mb-8 opacity-60"
+          style={{ color: 'hsl(270, 6%, 65%)' }}
+        >
+          Specializing in C++, Python & Full-Stack Development
         </p>
         
         <button
           onClick={handleClick}
-          className="group relative px-8 py-4 text-lg font-medium rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
+          className="group relative px-10 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 active:scale-95 gradient-primary text-primary-foreground"
           style={{
-            backgroundColor: 'hsla(270, 60%, 55%, 0.1)',
-            borderWidth: '2px',
-            borderStyle: 'solid',
-            borderColor: 'hsla(270, 60%, 55%, 0.3)',
-            color: 'hsl(270, 5%, 90%)',
-            boxShadow: '0 0 30px hsla(270, 60%, 55%, 0.2)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'hsla(270, 60%, 55%, 0.2)';
-            e.currentTarget.style.borderColor = 'hsla(270, 60%, 55%, 0.5)';
-            e.currentTarget.style.boxShadow = '0 0 40px hsla(270, 60%, 55%, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'hsla(270, 60%, 55%, 0.1)';
-            e.currentTarget.style.borderColor = 'hsla(270, 60%, 55%, 0.3)';
-            e.currentTarget.style.boxShadow = '0 0 30px hsla(270, 60%, 55%, 0.2)';
+            boxShadow: '0 0 30px hsla(270, 85%, 60%, 0.3)'
           }}
         >
-          Click Me
+          Enter Experience
           <div 
-            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-300"
             style={{
-              background: 'radial-gradient(circle, hsla(270, 60%, 55%, 0.3) 0%, transparent 70%)'
+              background: 'radial-gradient(circle, hsla(270, 85%, 60%, 0.4) 0%, transparent 70%)'
             }}
           />
         </button>
         
         <p 
-          className="text-xs mt-4 opacity-50"
-          style={{ color: 'hsl(270, 5%, 55%)' }}
+          className="text-xs mt-6 opacity-50"
+          style={{ color: 'hsl(270, 6%, 65%)' }}
         >
-          Click to enable sound and enter
+          Click to enable audio and explore my portfolio
         </p>
       </div>
     </div>

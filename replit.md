@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a modern, minimalist personal bio website for "penomovu", a C++ and Python developer. The application is built as a fully static React application designed for Netlify deployment, featuring a local video background and social media links in a dark purple theme.
+This is a modern, marketing-focused personal bio website for "penomovu", a senior software developer. The application has been transformed from a simple bio card into a comprehensive professional portfolio with stronger marketing identity while maintaining a minimalist dark design. Built as a full-stack React application with both client-side interactivity and server capabilities.
 
 ## User Preferences
 
@@ -19,27 +19,35 @@ Preferred communication style: Simple, everyday language.
 - **Build Tool**: Vite with React plugin
 - **Design System**: Dark theme with purple accent colors, modern glassmorphism effects
 
-### Static Architecture
-- **Type**: Fully static React application
-- **Video**: Local MP4 file ("plenka - cascade [escapism].mp4")
-- **Build**: Vite for production bundling
-- **Deployment**: Netlify with automated builds
+### Application Architecture
+- **Type**: Full-stack React application with Express backend
+- **Frontend**: React SPA with enhanced animations and professional UI
+- **Backend**: Express server for potential future API endpoints
+- **Video**: Local MP4 file with professional background effects
+- **Build**: Vite for development and production bundling
+- **Deployment**: Replit with workflow automation
 
 ## Key Components
 
 ### Frontend Components
-1. **ProfileCard**: Main bio display with profile image, name, title, and social links
-2. **VideoBackground**: Local video background with mute controls
-3. **SocialLinks**: Interactive social media links (GitHub, LinkedIn, X, Stack Overflow)
-4. **UI Components**: Minimalist shadcn/ui components for consistent design
+1. **HeroSection**: Professional hero with animated tagline and rotating specialties
+2. **SkillsSection**: Technical expertise showcase with interactive skill categories
+3. **ProfileCard**: Enhanced marketing-focused profile with achievements, CTA, and status
+4. **Navigation**: Glass-effect navigation bar with smooth animations
+5. **Footer**: Branded footer with professional touch
+6. **VideoBackground**: Local video background with enhanced visual effects
+7. **SocialLinks**: Interactive social media links with improved hover states
+8. **LandingOverlay**: Professional entry screen with marketing messaging
 
 ## Data Flow
 
 ### Current Implementation
-1. **Static Content**: Profile information is hardcoded in components
-2. **Social Links**: Static configuration with external URL navigation (4 essential platforms)
-3. **Background Video**: Local MP4 file with HTML5 video controls
-4. **Theme**: Dark purple minimalist design
+1. **Marketing Identity**: Professional portfolio with clear value proposition and CTAs
+2. **Interactive Components**: Animated hero section, skill showcases, and achievement highlights
+3. **Navigation System**: Glass-effect navigation with smooth transitions
+4. **Social Integration**: Enhanced social links with improved visual feedback
+5. **Background Video**: Professional video background with enhanced visual effects
+6. **Theme**: Upgraded dark theme with stronger visual hierarchy and marketing focus
 
 ## External Dependencies
 

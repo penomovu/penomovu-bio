@@ -3,49 +3,57 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(270, 15%, 5%);
-  --foreground: hsl(270, 5%, 90%);
-  --muted: hsl(270, 10%, 10%);
-  --muted-foreground: hsl(270, 5%, 55%);
-  --popover: hsl(270, 15%, 8%);
-  --popover-foreground: hsl(270, 5%, 90%);
-  --card: hsl(270, 15%, 8%);
-  --card-foreground: hsl(270, 5%, 90%);
-  --border: hsl(270, 10%, 15%);
-  --input: hsl(270, 10%, 12%);
-  --primary: hsl(270, 60%, 55%);
-  --primary-foreground: hsl(270, 5%, 95%);
-  --secondary: hsl(270, 10%, 12%);
-  --secondary-foreground: hsl(270, 5%, 85%);
-  --accent: hsl(270, 15%, 15%);
-  --accent-foreground: hsl(270, 5%, 85%);
-  --destructive: hsl(0, 62.8%, 30.6%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(270, 20%, 60%);
-  --radius: 0.5rem;
+  --background: hsl(272, 20%, 3%);
+  --foreground: hsl(270, 8%, 95%);
+  --muted: hsl(272, 15%, 8%);
+  --muted-foreground: hsl(270, 6%, 65%);
+  --popover: hsl(272, 18%, 6%);
+  --popover-foreground: hsl(270, 8%, 95%);
+  --card: hsl(272, 18%, 6%);
+  --card-foreground: hsl(270, 8%, 95%);
+  --border: hsl(272, 12%, 18%);
+  --input: hsl(272, 15%, 10%);
+  --primary: hsl(270, 85%, 60%);
+  --primary-foreground: hsl(270, 8%, 98%);
+  --secondary: hsl(272, 15%, 12%);
+  --secondary-foreground: hsl(270, 8%, 88%);
+  --accent: hsl(272, 20%, 15%);
+  --accent-foreground: hsl(270, 8%, 88%);
+  --success: hsl(142, 76%, 36%);
+  --success-foreground: hsl(270, 8%, 98%);
+  --warning: hsl(38, 92%, 50%);
+  --warning-foreground: hsl(270, 8%, 98%);
+  --destructive: hsl(0, 72%, 50%);
+  --destructive-foreground: hsl(270, 8%, 98%);
+  --ring: hsl(270, 85%, 60%);
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: hsl(270, 15%, 5%);
-  --foreground: hsl(270, 5%, 90%);
-  --muted: hsl(270, 10%, 10%);
-  --muted-foreground: hsl(270, 5%, 55%);
-  --popover: hsl(270, 15%, 8%);
-  --popover-foreground: hsl(270, 5%, 90%);
-  --card: hsl(270, 15%, 8%);
-  --card-foreground: hsl(270, 5%, 90%);
-  --border: hsl(270, 10%, 15%);
-  --input: hsl(270, 10%, 12%);
-  --primary: hsl(270, 60%, 55%);
-  --primary-foreground: hsl(270, 5%, 95%);
-  --secondary: hsl(270, 10%, 12%);
-  --secondary-foreground: hsl(270, 5%, 85%);
-  --accent: hsl(270, 15%, 15%);
-  --accent-foreground: hsl(270, 5%, 85%);
-  --destructive: hsl(0, 62.8%, 30.6%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(270, 20%, 60%);
-  --radius: 0.5rem;
+  --background: hsl(272, 20%, 3%);
+  --foreground: hsl(270, 8%, 95%);
+  --muted: hsl(272, 15%, 8%);
+  --muted-foreground: hsl(270, 6%, 65%);
+  --popover: hsl(272, 18%, 6%);
+  --popover-foreground: hsl(270, 8%, 95%);
+  --card: hsl(272, 18%, 6%);
+  --card-foreground: hsl(270, 8%, 95%);
+  --border: hsl(272, 12%, 18%);
+  --input: hsl(272, 15%, 10%);
+  --primary: hsl(270, 85%, 60%);
+  --primary-foreground: hsl(270, 8%, 98%);
+  --secondary: hsl(272, 15%, 12%);
+  --secondary-foreground: hsl(270, 8%, 88%);
+  --accent: hsl(272, 20%, 15%);
+  --accent-foreground: hsl(270, 8%, 88%);
+  --success: hsl(142, 76%, 36%);
+  --success-foreground: hsl(270, 8%, 98%);
+  --warning: hsl(38, 92%, 50%);
+  --warning-foreground: hsl(270, 8%, 98%);
+  --destructive: hsl(0, 72%, 50%);
+  --destructive-foreground: hsl(270, 8%, 98%);
+  --ring: hsl(270, 85%, 60%);
+  --radius: 0.75rem;
 }
 
 @layer base {
@@ -61,15 +69,27 @@
 
 @layer utilities {
   .font-code {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
   }
   
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.6s ease-in-out;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.8s ease-out;
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 0.8s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideRight 0.8s ease-out;
   }
   
   .animate-pulse-slow {
@@ -79,6 +99,38 @@
   .animate-bounce-slow {
     animation: bounce 2s infinite;
   }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(270, 85%, 60%) 0%, hsl(280, 70%, 55%) 100%);
+  }
+  
+  .gradient-card {
+    background: linear-gradient(135deg, 
+      hsla(272, 18%, 6%, 0.8) 0%, 
+      hsla(272, 15%, 8%, 0.6) 50%, 
+      hsla(272, 20%, 4%, 0.9) 100%);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: hsla(272, 18%, 6%, 0.3);
+    border: 1px solid hsla(270, 85%, 60%, 0.1);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(270, 85%, 60%) 0%, hsl(280, 70%, 55%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 @keyframes fadeIn {
@@ -87,8 +139,33 @@
 }
 
 @keyframes slideUp {
-  0% { transform: translateY(20px); opacity: 0; }
+  0% { transform: translateY(30px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideLeft {
+  0% { transform: translateX(30px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideRight {
+  0% { transform: translateX(-30px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px hsl(270, 85%, 60%), 0 0 10px hsl(270, 85%, 60%); }
+  100% { box-shadow: 0 0 10px hsl(270, 85%, 60%), 0 0 20px hsl(270, 85%, 60%), 0 0 30px hsl(270, 85%, 60%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Custom scrollbar */
