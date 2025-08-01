@@ -3,49 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(270, 15%, 5%);
-  --foreground: hsl(270, 5%, 90%);
-  --muted: hsl(270, 10%, 10%);
-  --muted-foreground: hsl(270, 5%, 55%);
-  --popover: hsl(270, 15%, 8%);
-  --popover-foreground: hsl(270, 5%, 90%);
-  --card: hsl(270, 15%, 8%);
-  --card-foreground: hsl(270, 5%, 90%);
-  --border: hsl(270, 10%, 15%);
-  --input: hsl(270, 10%, 12%);
-  --primary: hsl(270, 60%, 55%);
-  --primary-foreground: hsl(270, 5%, 95%);
-  --secondary: hsl(270, 10%, 12%);
-  --secondary-foreground: hsl(270, 5%, 85%);
-  --accent: hsl(270, 15%, 15%);
-  --accent-foreground: hsl(270, 5%, 85%);
-  --destructive: hsl(0, 62.8%, 30.6%);
+  --background: hsl(265, 25%, 3%);
+  --foreground: hsl(270, 10%, 95%);
+  --muted: hsl(265, 15%, 8%);
+  --muted-foreground: hsl(270, 8%, 60%);
+  --popover: hsl(265, 20%, 6%);
+  --popover-foreground: hsl(270, 10%, 95%);
+  --card: hsl(265, 20%, 6%);
+  --card-foreground: hsl(270, 10%, 95%);
+  --border: hsl(270, 15%, 20%);
+  --input: hsl(265, 15%, 10%);
+  --primary: hsl(285, 85%, 65%);
+  --primary-foreground: hsl(270, 10%, 98%);
+  --secondary: hsl(265, 15%, 10%);
+  --secondary-foreground: hsl(270, 8%, 90%);
+  --accent: hsl(275, 25%, 18%);
+  --accent-foreground: hsl(270, 8%, 90%);
+  --destructive: hsl(0, 75%, 40%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(270, 20%, 60%);
-  --radius: 0.5rem;
+  --ring: hsl(285, 70%, 70%);
+  --radius: 0.75rem;
+  
+  /* Enhanced glassmorphism variables */
+  --glass-bg: hsla(265, 20%, 6%, 0.25);
+  --glass-border: hsla(285, 50%, 60%, 0.15);
+  --glass-hover-bg: hsla(265, 20%, 8%, 0.4);
+  --glass-hover-border: hsla(285, 70%, 65%, 0.3);
+  --glow-primary: hsla(285, 85%, 65%, 0.4);
+  --glow-secondary: hsla(270, 60%, 70%, 0.2);
 }
 
 .dark {
-  --background: hsl(270, 15%, 5%);
-  --foreground: hsl(270, 5%, 90%);
-  --muted: hsl(270, 10%, 10%);
-  --muted-foreground: hsl(270, 5%, 55%);
-  --popover: hsl(270, 15%, 8%);
-  --popover-foreground: hsl(270, 5%, 90%);
-  --card: hsl(270, 15%, 8%);
-  --card-foreground: hsl(270, 5%, 90%);
-  --border: hsl(270, 10%, 15%);
-  --input: hsl(270, 10%, 12%);
-  --primary: hsl(270, 60%, 55%);
-  --primary-foreground: hsl(270, 5%, 95%);
-  --secondary: hsl(270, 10%, 12%);
-  --secondary-foreground: hsl(270, 5%, 85%);
-  --accent: hsl(270, 15%, 15%);
-  --accent-foreground: hsl(270, 5%, 85%);
-  --destructive: hsl(0, 62.8%, 30.6%);
+  --background: hsl(265, 25%, 3%);
+  --foreground: hsl(270, 10%, 95%);
+  --muted: hsl(265, 15%, 8%);
+  --muted-foreground: hsl(270, 8%, 60%);
+  --popover: hsl(265, 20%, 6%);
+  --popover-foreground: hsl(270, 10%, 95%);
+  --card: hsl(265, 20%, 6%);
+  --card-foreground: hsl(270, 10%, 95%);
+  --border: hsl(270, 15%, 20%);
+  --input: hsl(265, 15%, 10%);
+  --primary: hsl(285, 85%, 65%);
+  --primary-foreground: hsl(270, 10%, 98%);
+  --secondary: hsl(265, 15%, 10%);
+  --secondary-foreground: hsl(270, 8%, 90%);
+  --accent: hsl(275, 25%, 18%);
+  --accent-foreground: hsl(270, 8%, 90%);
+  --destructive: hsl(0, 75%, 40%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(270, 20%, 60%);
-  --radius: 0.5rem;
+  --ring: hsl(285, 70%, 70%);
+  --radius: 0.75rem;
+  
+  /* Enhanced glassmorphism variables */
+  --glass-bg: hsla(265, 20%, 6%, 0.25);
+  --glass-border: hsla(285, 50%, 60%, 0.15);
+  --glass-hover-bg: hsla(265, 20%, 8%, 0.4);
+  --glass-hover-border: hsla(285, 70%, 65%, 0.3);
+  --glow-primary: hsla(285, 85%, 65%, 0.4);
+  --glow-secondary: hsla(270, 60%, 70%, 0.2);
 }
 
 @layer base {

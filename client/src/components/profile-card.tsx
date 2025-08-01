@@ -15,62 +15,111 @@ export default function ProfileCard() {
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
       {/* Profile Card */}
       <Card 
-        className="backdrop-blur-sm shadow-xl animate-slide-up transition-all duration-300" 
+        className="glass-card animate-slide-up transition-all duration-500 relative overflow-hidden" 
         style={{ 
           animationDelay: "0.2s",
-          backgroundColor: 'hsla(270, 15%, 8%, 0.3)',
-          borderWidth: '1px',
-          borderStyle: 'solid',
-          borderColor: isHovered ? 'hsla(270, 60%, 55%, 0.6)' : 'hsla(270, 10%, 15%, 0.3)',
-          transform: isHovered ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
-          boxShadow: isHovered 
-            ? '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px hsla(270, 60%, 55%, 0.1)' 
-            : '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+          transform: isHovered ? 'translateY(-12px) scale(1.03)' : 'translateY(0) scale(1)',
+          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <CardContent className="p-6 sm:p-10">
+        {/* Animated background gradient overlay */}
+        <div 
+          className="absolute inset-0 opacity-20 transition-opacity duration-500"
+          style={{
+            background: isHovered 
+              ? 'linear-gradient(45deg, var(--glow-primary), transparent, var(--glow-secondary))' 
+              : 'transparent',
+            opacity: isHovered ? 0.1 : 0
+          }}
+        />
+        
+        {/* Inner glow border effect */}
+        <div 
+          className="absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            background: 'linear-gradient(45deg, transparent, var(--glass-hover-border), transparent)',
+            mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            maskComposite: 'xor',
+            WebkitMaskComposite: 'xor',
+            padding: '2px'
+          }}
+        />
+        <CardContent className="p-6 sm:p-10 relative z-10">
           {/* Profile Image */}
           <div className="flex justify-center mb-6 sm:mb-8">
-            <img
-              src="/profile-picture.png"
-              alt="penomovu profile picture"
-              className="w-32 h-32 sm:w-36 sm:h-36 rounded-full transition-all duration-300"
-              style={{
-                borderWidth: '2px',
-                borderStyle: 'solid',
-                borderColor: isImageHovered ? 'hsla(270, 60%, 55%, 0.5)' : 'transparent',
-                boxShadow: isImageHovered 
-                  ? '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 0 20px hsla(270, 60%, 55%, 0.2)' 
-                  : '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
-              }}
-              onMouseEnter={() => setIsImageHovered(true)}
-              onMouseLeave={() => setIsImageHovered(false)}
-            />
+            <div className="relative">
+              <img
+                src="/profile-picture.png"
+                alt="penomovu profile picture"
+                className="w-32 h-32 sm:w-36 sm:h-36 rounded-full transition-all duration-500 relative z-10"
+                style={{
+                  borderWidth: '3px',
+                  borderStyle: 'solid',
+                  borderColor: isImageHovered ? 'var(--primary)' : 'var(--glass-border)',
+                  boxShadow: isImageHovered 
+                    ? '0 20px 40px hsla(0, 0%, 0%, 0.3), 0 0 40px var(--glow-primary)' 
+                    : '0 8px 25px hsla(0, 0%, 0%, 0.2)',
+                  transform: isImageHovered ? 'scale(1.05)' : 'scale(1)'
+                }}
+                onMouseEnter={() => setIsImageHovered(true)}
+                onMouseLeave={() => setIsImageHovered(false)}
+              />
+              
+              {/* Animated ring around profile image */}
+              <div 
+                className="absolute inset-0 rounded-full transition-all duration-500"
+                style={{
+                  background: `conic-gradient(from 0deg, var(--primary), var(--glow-secondary), var(--primary))`,
+                  padding: '2px',
+                  opacity: isImageHovered ? 0.6 : 0,
+                  transform: isImageHovered ? 'scale(1.1) rotate(180deg)' : 'scale(1.05) rotate(0deg)',
+                  mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  maskComposite: 'xor',
+                  WebkitMaskComposite: 'xor'
+                }}
+              />
+            </div>
           </div>
 
           {/* Name and Title */}
           <div className="text-center mb-6 sm:mb-8">
             <h1 
-              className="text-3xl sm:text-4xl font-light mb-2 sm:mb-3 transition-colors duration-300"
+              className="text-3xl sm:text-4xl font-light mb-2 sm:mb-3 transition-all duration-500 relative"
               style={{ 
-                color: isHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 90%)'
+                color: isHovered ? 'var(--primary)' : 'var(--foreground)',
+                textShadow: isHovered ? '0 0 30px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.3)' : '0 2px 4px hsla(0, 0%, 0%, 0.2)',
+                transform: isHovered ? 'scale(1.02)' : 'scale(1)'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'hsl(270, 60%, 55%)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = isHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 90%)'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'var(--primary)';
+                e.currentTarget.style.textShadow = '0 0 30px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = isHovered ? 'var(--primary)' : 'var(--foreground)';
+                e.currentTarget.style.textShadow = isHovered ? '0 0 30px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.3)' : '0 2px 4px hsla(0, 0%, 0%, 0.2)';
+              }}
             >
               penomovu
             </h1>
             <p 
-              className="text-sm sm:text-base mb-2 transition-colors duration-300"
+              className="text-sm sm:text-base mb-2 transition-all duration-300 font-medium"
               style={{ 
-                color: isHovered ? 'hsl(270, 60%, 65%)' : 'hsl(270, 5%, 55%)'
+                color: isHovered ? 'hsl(285, 60%, 75%)' : 'var(--muted-foreground)',
+                textShadow: isHovered ? '0 0 15px var(--glow-secondary)' : 'none'
               }}
             >
               C++, Python & Web Developer
             </p>
-            <p className="text-muted-foreground/70 text-xs sm:text-sm flex items-center justify-center gap-1">
+            <p 
+              className="text-xs sm:text-sm flex items-center justify-center gap-1 transition-colors duration-300"
+              style={{
+                color: 'var(--muted-foreground)',
+                opacity: 0.8
+              }}
+            >
               <MapPin className="h-3 w-3" />
               France
             </p>
@@ -83,9 +132,29 @@ export default function ProfileCard() {
       </Card>
       {/* Footer */}
       <div className="text-center mt-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-        <p className="text-xs flex items-center justify-center gap-1 text-[#e6e4e721]">
+        <p 
+          className="text-sm flex items-center justify-center gap-2 font-light transition-all duration-300"
+          style={{ 
+            color: 'var(--muted-foreground)',
+            opacity: 0.6
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '1';
+            e.currentTarget.style.textShadow = '0 0 15px var(--glow-secondary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '0.6';
+            e.currentTarget.style.textShadow = 'none';
+          }}
+        >
           Made with 
-          <Heart className="h-3 w-3 text-primary/70" />
+          <Heart 
+            className="h-3 w-3 transition-all duration-300" 
+            style={{ 
+              color: 'var(--primary)',
+              filter: 'drop-shadow(0 0 6px var(--glow-primary))'
+            }}
+          />
           by penomovu
         </p>
       </div>

@@ -49,7 +49,7 @@ export default function SocialLinks() {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-6 sm:mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
       {socialLinks.map((link) => {
         const IconComponent = link.icon;
         const isHovered = hoveredLink === link.name;
@@ -58,38 +58,58 @@ export default function SocialLinks() {
           <button
             key={link.name}
             onClick={() => handleSocialClick(link.url)}
-            className="group rounded-md p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-300"
+            className="group relative rounded-lg p-3 sm:p-4 flex items-center gap-3 transition-all duration-500 overflow-hidden"
             style={{
-              backgroundColor: isHovered ? 'hsla(270, 60%, 55%, 0.1)' : 'hsla(270, 10%, 12%, 0.2)',
+              background: isHovered ? 'var(--glass-hover-bg)' : 'var(--glass-bg)',
               borderWidth: '1px',
               borderStyle: 'solid',
-              borderColor: isHovered ? 'hsla(270, 60%, 55%, 0.3)' : 'hsla(270, 10%, 15%, 0.2)',
-              transform: isHovered ? 'scale(1.02)' : 'scale(1)'
+              borderColor: isHovered ? 'var(--glass-hover-border)' : 'var(--glass-border)',
+              backdropFilter: 'blur(16px) saturate(150%)',
+              transform: isHovered ? 'translateY(-2px) scale(1.02)' : 'translateY(0) scale(1)',
+              boxShadow: isHovered 
+                ? '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 20px var(--glow-primary), inset 0 1px 0 var(--glass-hover-border)' 
+                : '0 4px 16px hsla(0, 0%, 0%, 0.2), inset 0 1px 0 var(--glass-border)'
             }}
             onMouseEnter={() => setHoveredLink(link.name)}
             onMouseLeave={() => setHoveredLink(null)}
           >
-            <div
-              className="text-base sm:text-lg transition-colors duration-300"
+            {/* Animated background shimmer */}
+            <div 
+              className="absolute inset-0 opacity-0 transition-opacity duration-500"
               style={{
-                color: isHovered ? 'hsl(270, 60%, 55%)' : 'hsl(270, 5%, 55%)'
+                background: 'linear-gradient(45deg, transparent 30%, var(--glow-secondary) 50%, transparent 70%)',
+                opacity: isHovered ? 0.1 : 0,
+                transform: isHovered ? 'translateX(100%)' : 'translateX(-100%)',
+                transition: 'all 0.6s ease-in-out'
+              }}
+            />
+
+            <div
+              className="text-lg sm:text-xl transition-all duration-300 relative z-10"
+              style={{
+                color: isHovered ? 'var(--primary)' : 'var(--muted-foreground)',
+                filter: isHovered ? 'drop-shadow(0 0 8px var(--glow-primary))' : 'none',
+                transform: isHovered ? 'scale(1.1)' : 'scale(1)'
               }}
             >
               <IconComponent />
             </div>
             <span 
-              className="text-xs sm:text-sm font-normal transition-colors duration-300"
+              className="text-sm sm:text-base font-medium transition-all duration-300 relative z-10"
               style={{
-                color: isHovered ? 'hsl(270, 5%, 90%)' : 'hsl(270, 5%, 55%)'
+                color: isHovered ? 'var(--foreground)' : 'var(--muted-foreground)',
+                textShadow: isHovered ? '0 0 10px var(--glow-secondary)' : 'none'
               }}
             >
               {link.name}
             </span>
             <ExternalLink 
-              className="h-3 w-3 ml-auto transition-opacity duration-300" 
+              className="h-3 w-3 ml-auto transition-all duration-300 relative z-10" 
               style={{
-                opacity: isHovered ? 0.4 : 0,
-                color: 'hsl(270, 5%, 55%)'
+                opacity: isHovered ? 0.6 : 0,
+                color: 'var(--primary)',
+                transform: isHovered ? 'translateX(2px) scale(1.1)' : 'translateX(0) scale(1)',
+                filter: isHovered ? 'drop-shadow(0 0 4px var(--glow-primary))' : 'none'
               }}
             />
           </button>

@@ -35,10 +35,76 @@ export default function Home() {
         
         body, html {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          background-color: hsl(270, 15%, 5%);
-          color: hsl(270, 5%, 90%);
+          background: radial-gradient(ellipse at top, hsl(285, 40%, 8%) 0%, hsl(265, 30%, 4%) 40%, hsl(260, 25%, 2%) 100%);
+          color: hsl(270, 10%, 95%);
           min-height: 100vh;
           overflow-x: hidden;
+        }
+        
+        /* Enhanced glassmorphism effects */
+        .glass-card {
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          backdrop-filter: blur(20px) saturate(180%);
+          box-shadow: 
+            0 8px 32px hsla(0, 0%, 0%, 0.3),
+            0 0 0 1px var(--glass-border) inset,
+            0 2px 16px var(--glow-secondary);
+        }
+        
+        .glass-card:hover {
+          background: var(--glass-hover-bg);
+          border-color: var(--glass-hover-border);
+          box-shadow: 
+            0 12px 40px hsla(0, 0%, 0%, 0.4),
+            0 0 0 1px var(--glass-hover-border) inset,
+            0 4px 24px var(--glow-primary);
+        }
+        
+        .glow-text {
+          text-shadow: 
+            0 0 20px var(--glow-primary),
+            0 0 40px var(--glow-secondary),
+            0 2px 4px hsla(0, 0%, 0%, 0.5);
+        }
+        
+        .floating-orbs::before,
+        .floating-orbs::after {
+          content: '';
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(40px);
+          opacity: 0.6;
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-orbs::before {
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, var(--glow-primary) 0%, transparent 70%);
+          top: 10%;
+          right: 10%;
+          animation-delay: -2s;
+        }
+        
+        .floating-orbs::after {
+          width: 200px;
+          height: 200px;
+          background: radial-gradient(circle, var(--glow-secondary) 0%, transparent 70%);
+          bottom: 20%;
+          left: 15%;
+          animation-delay: -4s;
+        }
+        
+        @keyframes float {
+          0%, 100% { 
+            transform: translateY(0px) scale(1);
+            opacity: 0.6;
+          }
+          50% { 
+            transform: translateY(-20px) scale(1.1);
+            opacity: 0.8;
+          }
         }
         
         .animate-fade-in {
@@ -208,10 +274,10 @@ export default function Home() {
       `}</style>
       
       <div 
-        className="min-h-screen overflow-x-hidden" 
+        className="min-h-screen overflow-x-hidden floating-orbs relative" 
         style={{ 
-          backgroundColor: 'hsl(270, 15%, 5%)', 
-          color: 'hsl(270, 5%, 90%)',
+          background: 'radial-gradient(ellipse at top, hsl(285, 40%, 8%) 0%, hsl(265, 30%, 4%) 40%, hsl(260, 25%, 2%) 100%)',
+          color: 'hsl(270, 10%, 95%)',
           fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
         }}
       >
