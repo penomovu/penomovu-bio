@@ -99,65 +99,52 @@ export default function ProfileCard() {
                 }}
               />
 
-              {/* Discord Contact Tooltip */}
+              {/* Discord Contact Overlay - Inside Profile Picture */}
               <div 
-                className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-300 pointer-events-none"
+                className="absolute inset-0 rounded-full flex items-center justify-center transition-all duration-300 pointer-events-none cursor-pointer"
                 style={{
+                  background: showDiscordTooltip 
+                    ? 'hsla(0, 0%, 0%, 0.8)' 
+                    : 'transparent',
+                  backdropFilter: showDiscordTooltip ? 'blur(8px)' : 'none',
                   opacity: showDiscordTooltip ? 1 : 0,
-                  transform: showDiscordTooltip 
-                    ? 'translateX(-50%) translateY(0) scale(1)' 
-                    : 'translateX(-50%) translateY(10px) scale(0.8)',
-                  zIndex: 50
+                  zIndex: 20
                 }}
+                onClick={showDiscordTooltip ? handleDiscordCopy : undefined}
               >
                 <div 
-                  className="relative px-4 py-3 rounded-lg pointer-events-auto cursor-pointer"
+                  className="text-center transition-all duration-300"
                   style={{
-                    background: 'var(--glass-hover-bg)',
-                    backdropFilter: 'blur(20px) saturate(180%)',
-                    border: '1px solid var(--glass-hover-border)',
-                    boxShadow: '0 8px 32px hsla(0, 0%, 0%, 0.4), 0 0 20px var(--glow-primary)',
-                    minWidth: '180px'
+                    transform: showDiscordTooltip ? 'scale(1)' : 'scale(0.8)',
+                    pointerEvents: showDiscordTooltip ? 'auto' : 'none'
                   }}
-                  onClick={handleDiscordCopy}
                 >
-                  {/* Tooltip arrow */}
-                  <div 
-                    className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0"
-                    style={{
-                      borderLeft: '8px solid transparent',
-                      borderRight: '8px solid transparent',
-                      borderBottom: '8px solid var(--glass-hover-border)'
+                  <MessageCircle 
+                    className="h-6 w-6 mx-auto mb-1" 
+                    style={{ 
+                      color: '#5865F2',
+                      filter: 'drop-shadow(0 0 8px #5865F2)'
                     }}
                   />
-                  
-                  <div className="flex items-center gap-2 justify-center">
-                    <MessageCircle 
-                      className="h-4 w-4" 
-                      style={{ 
-                        color: '#5865F2',
-                        filter: 'drop-shadow(0 0 6px #5865F2)'
-                      }}
-                    />
-                    <div className="text-center">
-                      <div 
-                        className="text-sm font-medium"
-                        style={{ color: 'var(--foreground)' }}
-                      >
-                        {discordCopied ? 'Copied!' : 'Contact on Discord'}
-                      </div>
-                      <div 
-                        className="text-xs font-mono"
-                        style={{ 
-                          color: '#5865F2',
-                          textShadow: '0 0 8px #5865F2'
-                        }}
-                      >
-                        ronioza
-                      </div>
-                    </div>
+                  <div 
+                    className="text-xs font-medium mb-1"
+                    style={{ 
+                      color: 'var(--foreground)',
+                      textShadow: '0 0 10px var(--glow-primary)'
+                    }}
+                  >
+                    {discordCopied ? 'Copied!' : 'Discord'}
+                  </div>
+                  <div 
+                    className="text-xs font-mono flex items-center gap-1"
+                    style={{ 
+                      color: '#5865F2',
+                      textShadow: '0 0 8px #5865F2'
+                    }}
+                  >
+                    ronioza
                     <Copy 
-                      className="h-3 w-3 opacity-60" 
+                      className="h-2 w-2 opacity-70" 
                       style={{ color: 'var(--muted-foreground)' }}
                     />
                   </div>
