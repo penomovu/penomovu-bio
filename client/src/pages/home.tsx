@@ -35,8 +35,8 @@ export default function Home() {
         
         body, html {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          background-color: hsl(270, 15%, 5%);
-          color: hsl(270, 5%, 90%);
+          background-color: hsl(270, 20%, 3%);
+          color: hsl(270, 8%, 95%);
           min-height: 100vh;
           overflow-x: hidden;
         }
@@ -210,8 +210,8 @@ export default function Home() {
       <div 
         className="min-h-screen overflow-x-hidden" 
         style={{ 
-          backgroundColor: 'hsl(270, 15%, 5%)', 
-          color: 'hsl(270, 5%, 90%)',
+          backgroundColor: 'hsl(270, 20%, 3%)', 
+          color: 'hsl(270, 8%, 95%)',
           fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
         }}
       >
