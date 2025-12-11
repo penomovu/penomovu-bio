@@ -6,6 +6,8 @@ import CurrentlyPlaying from "@/components/currently-playing";
 import ParticleSystem from "@/components/particle-system";
 import GeometricBackground from "@/components/geometric-background";
 import AnimatedBackground from "@/components/animated-background";
+import DetroitAudioPlayer from "@/components/detroit-audio-player";
+import HexagonalBackground from "@/components/hexagonal-background";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -38,8 +40,8 @@ export default function Home() {
         
         body, html {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          background: radial-gradient(ellipse at top, hsl(285, 40%, 8%) 0%, hsl(265, 30%, 4%) 40%, hsl(260, 25%, 2%) 100%);
-          color: hsl(270, 10%, 95%);
+          background: radial-gradient(ellipse at top, hsl(207, 100%, 8%) 0%, hsl(207, 90%, 4%) 40%, hsl(207, 100%, 2%) 100%);
+          color: hsl(190, 100%, 95%);
           min-height: 100vh;
           overflow-x: hidden;
         }
@@ -277,10 +279,10 @@ export default function Home() {
       `}</style>
       
       <div 
-        className="min-h-screen overflow-x-hidden floating-orbs relative" 
+        className="min-h-screen overflow-x-hidden floating-orbs relative scanlines circuit-pattern" 
         style={{ 
-          background: 'radial-gradient(ellipse at top, hsl(285, 40%, 8%) 0%, hsl(265, 30%, 4%) 40%, hsl(260, 25%, 2%) 100%)',
-          color: 'hsl(270, 10%, 95%)',
+          background: 'radial-gradient(ellipse at top, hsl(207, 100%, 8%) 0%, hsl(207, 90%, 4%) 40%, hsl(207, 100%, 2%) 100%)',
+          color: 'hsl(190, 100%, 95%)',
           fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
         }}
       >
@@ -290,10 +292,13 @@ export default function Home() {
           shouldPlay={hasEntered}
         />
         
+        {/* Detroit Hexagonal Background */}
+        <HexagonalBackground />
+        
         {/* Animated Background Effects */}
         <AnimatedBackground />
         
-        {/* Particle System */}
+        {/* Particle System - Cyan themed */}
         <ParticleSystem />
         
         {/* Geometric Background Elements */}
@@ -309,6 +314,9 @@ export default function Home() {
         
         {/* Currently Playing */}
         {hasEntered && <CurrentlyPlaying />}
+        
+        {/* Detroit Audio Player */}
+        {hasEntered && <DetroitAudioPlayer shouldPlay={hasEntered} />}
         
         {/* Landing Overlay */}
         {!hasEntered && (
