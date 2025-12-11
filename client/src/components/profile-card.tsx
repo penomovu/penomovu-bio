@@ -280,7 +280,6 @@ export default function ProfileCard({ audioIntensity = 0, frequencyData }: Profi
 
           {/* Social Links */}
           <div className="mb-2">
-            <div className="system-text text-xs mb-2">NETWORK INTERFACES</div>
             <SocialLinks />
           </div>
 

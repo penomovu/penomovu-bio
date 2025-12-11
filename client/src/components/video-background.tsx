@@ -55,7 +55,7 @@ export default function VideoBackground({
         className="w-full h-full object-cover"
         style={{ 
           opacity,
-          filter: 'contrast(1.2) brightness(0.7) saturate(1.1) hue-rotate(10deg)'
+          filter: 'contrast(1.1) brightness(0.9) saturate(1.2) hue-rotate(5deg)'
         }}
         autoPlay
         loop
@@ -71,36 +71,35 @@ export default function VideoBackground({
         />
       </video>
       
-      {/* Detroit: Become Human cyan overlay */}
+      {/* Detroit: Become Human cyan overlay - much lighter */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse at top, hsla(190, 100%, 20%, 0.2) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom, hsla(207, 100%, 3%, 0.5) 0%, transparent 50%),
-            linear-gradient(180deg, transparent 0%, hsla(207, 90%, 6%, 0.3) 50%, transparent 100%)
+            radial-gradient(ellipse at top, hsla(190, 100%, 20%, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse at bottom, hsla(207, 100%, 3%, 0.15) 0%, transparent 50%)
           `
         }}
       />
       
-      {/* Animated cyan gradient overlay */}
+      {/* Animated cyan gradient overlay - very subtle */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-20"
+        className="absolute inset-0 pointer-events-none opacity-10"
         style={{
           background: `
             linear-gradient(45deg, 
-              hsla(190, 100%, 50%, 0.15) 0%, 
+              hsla(190, 100%, 50%, 0.08) 0%, 
               transparent 25%, 
-              hsla(190, 100%, 70%, 0.1) 50%, 
+              hsla(190, 100%, 70%, 0.05) 50%, 
               transparent 75%, 
-              hsla(190, 100%, 50%, 0.15) 100%
+              hsla(190, 100%, 50%, 0.08) 100%
             )`,
           animation: 'gradient-shift 8s ease-in-out infinite'
         }}
       />
       
-      {/* Scanlines */}
-      <div className="absolute inset-0 pointer-events-none scanlines" />
+      {/* Scanlines - very subtle */}
+      <div className="absolute inset-0 pointer-events-none scanlines" style={{ opacity: 0.3 }} />
     </div>
   );
 }

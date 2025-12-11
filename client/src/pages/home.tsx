@@ -283,16 +283,16 @@ export default function Home() {
       `}</style>
       
       <div 
-        className="min-h-screen overflow-x-hidden floating-orbs relative scanlines circuit-pattern" 
+        className="min-h-screen overflow-x-hidden floating-orbs relative" 
         style={{ 
-          background: 'radial-gradient(ellipse at top, hsl(207, 100%, 8%) 0%, hsl(207, 90%, 4%) 40%, hsl(207, 100%, 2%) 100%)',
+          background: 'radial-gradient(ellipse at top, hsl(207, 80%, 12%) 0%, hsl(207, 70%, 8%) 40%, hsl(207, 80%, 5%) 100%)',
           color: 'hsl(190, 100%, 95%)',
           fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
         }}
       >
         {/* Enhanced Video Background */}
         <VideoBackground 
-          opacity={0.6}
+          opacity={0.8}
           shouldPlay={hasEntered}
         />
         
