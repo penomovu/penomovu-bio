@@ -68,7 +68,7 @@ export default function EnhancedProfileImage({
         <img
           src={src}
           alt={alt}
-          className="w-32 h-32 sm:w-36 sm:h-36 rounded-full transition-all duration-700 relative z-10"
+          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full transition-all duration-700 relative z-10"
           style={{
             borderWidth: '3px',
             borderStyle: 'solid',

@@ -6,9 +6,15 @@ import CurrentlyPlaying from "@/components/currently-playing";
 import ParticleSystem from "@/components/particle-system";
 import GeometricBackground from "@/components/geometric-background";
 import AnimatedBackground from "@/components/animated-background";
+import HexagonalBackground from "@/components/hexagonal-background";
+import BackgroundAudio from "@/components/background-audio";
+import AudioVisualizer from "@/components/audio-visualizer";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
+  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
+  const [audioIntensity, setAudioIntensity] = useState(0);
+  const [frequencyData, setFrequencyData] = useState({ bass: 0, mid: 0, treble: 0 });
 
   useEffect(() => {
     // Handle responsive video background
@@ -38,8 +44,8 @@ export default function Home() {
         
         body, html {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          background: radial-gradient(ellipse at top, hsl(285, 40%, 8%) 0%, hsl(265, 30%, 4%) 40%, hsl(260, 25%, 2%) 100%);
-          color: hsl(270, 10%, 95%);
+          background: radial-gradient(ellipse at top, hsl(207, 100%, 8%) 0%, hsl(207, 90%, 4%) 40%, hsl(207, 100%, 2%) 100%);
+          color: hsl(190, 100%, 95%);
           min-height: 100vh;
           overflow-x: hidden;
         }
@@ -279,21 +285,24 @@ export default function Home() {
       <div 
         className="min-h-screen overflow-x-hidden floating-orbs relative" 
         style={{ 
-          background: 'radial-gradient(ellipse at top, hsl(285, 40%, 8%) 0%, hsl(265, 30%, 4%) 40%, hsl(260, 25%, 2%) 100%)',
-          color: 'hsl(270, 10%, 95%)',
+          background: 'radial-gradient(ellipse at top, hsl(207, 80%, 12%) 0%, hsl(207, 70%, 8%) 40%, hsl(207, 80%, 5%) 100%)',
+          color: 'hsl(190, 100%, 95%)',
           fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
         }}
       >
         {/* Enhanced Video Background */}
         <VideoBackground 
-          opacity={0.6}
+          opacity={0.8}
           shouldPlay={hasEntered}
         />
+        
+        {/* Detroit Hexagonal Background */}
+        <HexagonalBackground />
         
         {/* Animated Background Effects */}
         <AnimatedBackground />
         
-        {/* Particle System */}
+        {/* Particle System - Cyan themed */}
         <ParticleSystem />
         
         {/* Geometric Background Elements */}
@@ -304,11 +313,26 @@ export default function Home() {
           className="relative min-h-screen flex items-center justify-center p-4 sm:p-8"
           style={{ zIndex: 10 }}
         >
-          <ProfileCard />
+          <ProfileCard audioIntensity={audioIntensity} frequencyData={frequencyData} />
         </div>
         
         {/* Currently Playing */}
         {hasEntered && <CurrentlyPlaying />}
+        
+        {/* Background Audio - Detroit Soundtrack */}
+        <BackgroundAudio 
+          shouldPlay={hasEntered} 
+          onAudioReady={setAudioElement}
+        />
+        
+        {/* Audio Visualizer */}
+        {audioElement && (
+          <AudioVisualizer 
+            audioElement={audioElement}
+            onBeatDetected={setAudioIntensity}
+            onFrequencyData={setFrequencyData}
+          />
+        )}
         
         {/* Landing Overlay */}
         {!hasEntered && (

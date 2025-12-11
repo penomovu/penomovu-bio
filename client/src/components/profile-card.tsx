@@ -1,18 +1,48 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Heart, MessageCircle, Copy } from "lucide-react";
+import { MapPin, Heart, MessageCircle, Copy, Activity, Cpu, Database } from "lucide-react";
 import SocialLinks from "./social-links";
 import EnhancedProfileImage from "./enhanced-profile-image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 
 
 
-export default function ProfileCard() {
+interface ProfileCardProps {
+  audioIntensity?: number;
+  frequencyData?: { bass: number; mid: number; treble: number };
+}
+
+export default function ProfileCard({ audioIntensity = 0, frequencyData }: ProfileCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [showDiscordTooltip, setShowDiscordTooltip] = useState(false);
   const [discordCopied, setDiscordCopied] = useState(false);
+  const [systemStability, setSystemStability] = useState(95);
+  const [cpuLoad, setCpuLoad] = useState(23);
+  const [memoryStatus, setMemoryStatus] = useState("OPTIMAL");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    // Fetch real server stats
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/server-stats');
+        if (response.ok) {
+          const data = await response.json();
+          setSystemStability(data.stability);
+          setCpuLoad(data.cpuLoad);
+          setMemoryStatus(data.memoryStatus);
+        }
+      } catch (error) {
+        console.error('Failed to fetch server stats:', error);
+      }
+    };
+
+    fetchStats();
+    const interval = setInterval(fetchStats, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleDiscordCopy = () => {
     navigator.clipboard.writeText('ronioza');
@@ -20,45 +50,88 @@ export default function ProfileCard() {
     setTimeout(() => setDiscordCopied(false), 2000);
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setMousePosition({ x: 0.5, y: 0.5 });
+  };
+
+  // Calculate 3D transform based on mouse position - more responsive and smooth
+  const get3DTransform = () => {
+    if (!isHovered) return 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+    
+    const { x, y } = mousePosition;
+    const rotateY = (x - 0.5) * 20; // Increased range for more dramatic effect
+    const rotateX = (y - 0.5) * -20; // Increased range for more dramatic effect
+    const scale = 1.03 + (audioIntensity * 0.02); // Subtle pulse with music
+    
+    return `translateY(-8px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  };
+
+  // Calculate glow intensity based on audio
+  const getGlowIntensity = () => {
+    const baseGlow = 'rgba(0, 217, 255, 0.3)';
+    const intensityGlow = `rgba(0, 217, 255, ${0.3 + (frequencyData?.bass || 0) * 0.4})`;
+    return isHovered ? intensityGlow : baseGlow;
+  };
+
   return (
-    <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
-      {/* Enhanced Profile Card */}
+    <div 
+      className="max-w-md w-full mx-auto px-4 animate-fade-in"
+      style={{ perspective: '1500px' }}
+    >
+      {/* Android Diagnostic Panel */}
       <Card 
-        className="glass-enhanced animate-slide-up transition-all duration-500 relative overflow-hidden ripple" 
+        className="diagnostic-panel animate-slide-up relative overflow-hidden hud-border digital-noise scan-sweep holo-distortion" 
         style={{ 
           animationDelay: "0.2s",
-          transform: isHovered ? 'translateY(-12px) scale(1.03)' : 'translateY(0) scale(1)',
-          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+          transform: get3DTransform(),
+          transition: 'transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease-out, border 0.15s ease-out',
+          border: `2px solid ${getGlowIntensity()}`,
+          boxShadow: isHovered 
+            ? `0 20px 60px rgba(0, 0, 0, 0.6), 0 0 50px ${getGlowIntensity()}, inset 0 0 40px rgba(0, 217, 255, 0.08)`
+            : '0 10px 30px rgba(0, 0, 0, 0.4)',
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
         }}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
-        {/* Animated background gradient overlay */}
-        <div 
-          className="absolute inset-0 opacity-20 transition-opacity duration-500"
-          style={{
-            background: isHovered 
-              ? 'linear-gradient(45deg, var(--glow-primary), transparent, var(--glow-secondary))' 
-              : 'transparent',
-            opacity: isHovered ? 0.1 : 0
-          }}
-        />
+        {/* Holographic overlay - more subtle */}
+        <div className="absolute inset-0 holographic holo-flicker pointer-events-none" style={{ opacity: 0.6 }} />
         
-        {/* Inner glow border effect */}
-        <div 
-          className="absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            background: 'linear-gradient(45deg, transparent, var(--glass-hover-border), transparent)',
-            mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-            maskComposite: 'xor',
-            WebkitMaskComposite: 'xor',
-            padding: '2px'
-          }}
-        />
-        <CardContent className="p-6 sm:p-10 relative z-10">
+        {/* Cyber grid overlay - more subtle */}
+        <div className="absolute inset-0 cyber-grid pointer-events-none" style={{ opacity: 0.05 }} />
+        
+        {/* Data stream effect - reduced */}
+        <div className="data-stream" style={{ opacity: 0.5 }} />
+        <CardContent className="p-4 sm:p-6 relative z-10">
+          {/* System Header */}
+          <div className="mb-3 pb-2 border-b border-cyan-500/30">
+            <div className="flex items-center justify-between">
+              <span className="system-text text-xs">SERIAL#</span>
+              <span className="font-mono text-xs text-cyan-400">RK800-#313-248-317</span>
+            </div>
+          </div>
+
           {/* Enhanced Profile Image */}
-          <div className="flex justify-center mb-6 sm:mb-8">
+          <div className="flex justify-center mb-4 sm:mb-5 relative">
+            <div 
+              className="absolute -inset-4 rounded-lg transition-all duration-300" 
+              style={{
+                border: '1px solid rgba(0, 217, 255, 0.25)',
+                boxShadow: isImageHovered ? '0 0 20px rgba(0, 217, 255, 0.3)' : 'none',
+                background: 'rgba(0, 30, 60, 0.1)'
+              }}
+            />
             <EnhancedProfileImage
               src="/profile-picture.png"
               alt="penomovu profile picture"
@@ -71,79 +144,185 @@ export default function ProfileCard() {
             />
           </div>
 
-          {/* Name and Title */}
-          <div className="text-center mb-6 sm:mb-8">
-            <h1 
-              className="text-3xl sm:text-4xl font-light mb-2 sm:mb-3 transition-all duration-500 relative text-gradient-animated"
-              style={{ 
-                color: isHovered ? 'var(--primary)' : 'var(--foreground)',
-                textShadow: isHovered ? '0 0 30px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.3)' : '0 2px 4px hsla(0, 0%, 0%, 0.2)',
-                transform: isHovered ? 'scale(1.02)' : 'scale(1)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--primary)';
-                e.currentTarget.style.textShadow = '0 0 30px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = isHovered ? 'var(--primary)' : 'var(--foreground)';
-                e.currentTarget.style.textShadow = isHovered ? '0 0 30px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.3)' : '0 2px 4px hsla(0, 0%, 0%, 0.2)';
-              }}
-            >
-              penomovu
-            </h1>
+          {/* Name and Title - Detroit Style */}
+          <div className="text-center mb-4">
+            <div className="system-text text-xs mb-1" style={{ opacity: 0.6 }}>
+              DESIGNATION
+            </div>
+            <div className="relative inline-block">
+              {/* Background glow that reacts to music - more subtle */}
+              <div 
+                className="absolute inset-0 blur-xl"
+                style={{
+                  background: `radial-gradient(circle, var(--android-led) 0%, transparent 70%)`,
+                  opacity: 0.4 + (frequencyData?.mid || 0) * 0.3,
+                  transform: `scale(${1.2 + (audioIntensity * 0.15)})`,
+                  transition: 'all 0.15s ease-out',
+                  filter: 'blur(30px)'
+                }}
+              />
+              <h1 
+                className="text-3xl sm:text-4xl font-light mb-2 transition-all relative chromatic-text"
+                data-text="penomovu"
+                style={{ 
+                  color: 'var(--primary)',
+                  letterSpacing: '0.1em',
+                  fontWeight: 100,
+                  textShadow: `
+                    0 0 15px var(--android-led),
+                    0 0 30px var(--android-led),
+                    0 0 45px var(--android-led),
+                    0 0 ${60 + (frequencyData?.treble || 0) * 40}px var(--android-led),
+                    0 3px 6px rgba(0, 0, 0, 0.6)
+                  `,
+                  transform: `scale(${1 + (audioIntensity * 0.03)}) translateZ(10px)`,
+                  transition: 'all 0.15s ease-out',
+                  WebkitTextStroke: '0.3px rgba(0, 217, 255, 0.4)',
+                  transformStyle: 'preserve-3d'
+                }}
+              >
+                penomovu
+              </h1>
+              {/* Animated underline - more visible and reactive */}
+              <div 
+                className="h-1 mx-auto mt-2 rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, var(--android-led), transparent)',
+                  boxShadow: `0 0 15px var(--android-led), 0 0 30px var(--android-led)`,
+                  width: `${70 + (frequencyData?.bass || 0) * 30}%`,
+                  transition: 'width 0.15s ease-out, box-shadow 0.15s ease-out'
+                }}
+              />
+            </div>
+            
+            <div className="system-text text-xs mb-1" style={{ opacity: 0.6 }}>
+              PRIMARY FUNCTION
+            </div>
             <p 
-              className="text-sm sm:text-base mb-2 transition-all duration-300 font-medium"
+              className="text-xs sm:text-sm mb-2 font-mono"
               style={{ 
-                color: isHovered ? 'hsl(285, 60%, 75%)' : 'var(--muted-foreground)',
-                textShadow: isHovered ? '0 0 15px var(--glow-secondary)' : 'none'
+                color: 'var(--foreground)',
+                textShadow: '0 0 10px var(--glow-secondary)'
               }}
             >
               C++, Python & Web Developer
             </p>
-            <p 
-              className="text-xs sm:text-sm flex items-center justify-center gap-1 transition-colors duration-300"
+            
+            <div className="flex items-center justify-center gap-2 text-xs font-mono"
               style={{
                 color: 'var(--muted-foreground)',
                 opacity: 0.8
               }}
             >
-              <MapPin className="h-3 w-3" />
-              France
-            </p>
+              <MapPin className="h-3 w-3" style={{ color: 'var(--android-led)' }} />
+              <span className="system-text" style={{ fontSize: '10px' }}>LOCATION:</span>
+              <span>France</span>
+            </div>
+          </div>
+
+          {/* System Diagnostics */}
+          <div className="mb-4 p-3 rounded" style={{ 
+            background: 'rgba(0, 217, 255, 0.05)',
+            border: '1px solid rgba(0, 217, 255, 0.2)'
+          }}>
+            <div className="system-text text-xs mb-2">SYSTEM DIAGNOSTICS</div>
+            
+            <div className="space-y-2">
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="flex items-center gap-2 text-xs">
+                    <Activity className="h-3 w-3" style={{ color: 'var(--android-led)' }} />
+                    <span className="font-mono">STABILITY</span>
+                  </span>
+                  <span className="font-mono text-xs text-cyan-400">{systemStability.toFixed(0)}%</span>
+                </div>
+                <div className="probability-bar" style={{ width: '100%' }}>
+                  <div style={{ 
+                    width: `${systemStability}%`,
+                    height: '100%',
+                    background: 'linear-gradient(90deg, var(--android-led), var(--glow-secondary))',
+                    boxShadow: '0 0 10px var(--android-led)',
+                    transition: 'width 0.5s ease'
+                  }} />
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="flex items-center gap-2 text-xs">
+                    <Cpu className="h-3 w-3" style={{ color: 'var(--android-led)' }} />
+                    <span className="font-mono">CPU LOAD</span>
+                  </span>
+                  <span className="font-mono text-xs text-cyan-400">{cpuLoad.toFixed(0)}%</span>
+                </div>
+                <div className="probability-bar" style={{ width: '100%' }}>
+                  <div style={{ 
+                    width: `${cpuLoad}%`,
+                    height: '100%',
+                    background: 'linear-gradient(90deg, var(--android-led), var(--glow-secondary))',
+                    boxShadow: '0 0 10px var(--android-led)',
+                    transition: 'width 0.5s ease'
+                  }} />
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-2 text-xs">
+                    <Database className="h-3 w-3" style={{ color: 'var(--android-led)' }} />
+                    <span className="font-mono">MEMORY STATUS</span>
+                  </span>
+                  <span className="font-mono text-xs text-cyan-400">{memoryStatus}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Social Links */}
-          <SocialLinks />
+          <div className="mb-2">
+            <SocialLinks />
+          </div>
 
           </CardContent>
       </Card>
-      {/* Footer */}
-      <div className="text-center mt-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-        <p 
-          className="text-sm flex items-center justify-center gap-2 font-light transition-all duration-300"
+      {/* Footer - Detroit Style */}
+      <div className="text-center mt-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+        <div 
+          className="system-text flex items-center justify-center gap-2 transition-all duration-300"
           style={{ 
             color: 'var(--muted-foreground)',
-            opacity: 0.6
+            opacity: 0.7,
+            fontSize: '10px'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.opacity = '1';
-            e.currentTarget.style.textShadow = '0 0 15px var(--glow-secondary)';
+            e.currentTarget.style.textShadow = '0 0 15px var(--glow-primary)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.opacity = '0.6';
+            e.currentTarget.style.opacity = '0.7';
             e.currentTarget.style.textShadow = 'none';
           }}
         >
-          Made with 
+          <span>DESIGNED BY</span>
           <Heart 
-            className="h-3 w-3 transition-all duration-300" 
+            className="h-3 w-3 transition-all duration-300 android-led" 
             style={{ 
-              color: 'var(--primary)',
-              filter: 'drop-shadow(0 0 6px var(--glow-primary))'
+              color: 'var(--android-led)',
+              filter: 'drop-shadow(0 0 8px var(--android-led))',
+              animation: 'led-pulse 2s ease-in-out infinite'
             }}
           />
-          by penomovu
-        </p>
+          <span>PENOMOVU</span>
+        </div>
+        <div 
+          className="font-mono text-xs mt-2"
+          style={{ 
+            color: 'var(--muted-foreground)',
+            opacity: 0.5
+          }}
+        >
+          &copy; 2038
+        </div>
       </div>
     </div>
   );

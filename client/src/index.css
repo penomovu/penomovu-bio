@@ -3,65 +3,71 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(265, 25%, 3%);
-  --foreground: hsl(270, 10%, 95%);
-  --muted: hsl(265, 15%, 8%);
-  --muted-foreground: hsl(270, 8%, 60%);
-  --popover: hsl(265, 20%, 6%);
-  --popover-foreground: hsl(270, 10%, 95%);
-  --card: hsl(265, 20%, 6%);
-  --card-foreground: hsl(270, 10%, 95%);
-  --border: hsl(270, 15%, 20%);
-  --input: hsl(265, 15%, 10%);
-  --primary: hsl(285, 85%, 65%);
-  --primary-foreground: hsl(270, 10%, 98%);
-  --secondary: hsl(265, 15%, 10%);
-  --secondary-foreground: hsl(270, 8%, 90%);
-  --accent: hsl(275, 25%, 18%);
-  --accent-foreground: hsl(270, 8%, 90%);
-  --destructive: hsl(0, 75%, 40%);
+  /* Detroit: Become Human Color Scheme */
+  --background: hsl(207, 100%, 3%);
+  --foreground: hsl(190, 100%, 95%);
+  --muted: hsl(207, 60%, 8%);
+  --muted-foreground: hsl(190, 20%, 65%);
+  --popover: hsl(207, 90%, 6%);
+  --popover-foreground: hsl(190, 100%, 95%);
+  --card: hsl(207, 90%, 6%);
+  --card-foreground: hsl(190, 100%, 95%);
+  --border: hsl(190, 100%, 30%);
+  --input: hsl(207, 60%, 10%);
+  --primary: hsl(190, 100%, 50%);
+  --primary-foreground: hsl(210, 100%, 10%);
+  --secondary: hsl(207, 60%, 12%);
+  --secondary-foreground: hsl(190, 50%, 85%);
+  --accent: hsl(190, 100%, 35%);
+  --accent-foreground: hsl(190, 100%, 95%);
+  --destructive: hsl(14, 100%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(285, 70%, 70%);
-  --radius: 0.75rem;
+  --ring: hsl(190, 100%, 50%);
+  --radius: 0.25rem;
   
-  /* Enhanced glassmorphism variables */
-  --glass-bg: hsla(265, 20%, 6%, 0.25);
-  --glass-border: hsla(285, 50%, 60%, 0.15);
-  --glass-hover-bg: hsla(265, 20%, 8%, 0.4);
-  --glass-hover-border: hsla(285, 70%, 65%, 0.3);
-  --glow-primary: hsla(285, 85%, 65%, 0.4);
-  --glow-secondary: hsla(270, 60%, 70%, 0.2);
+  /* Detroit: Become Human glassmorphism variables */
+  --glass-bg: hsla(207, 90%, 6%, 0.3);
+  --glass-border: hsla(190, 100%, 50%, 0.2);
+  --glass-hover-bg: hsla(207, 90%, 8%, 0.5);
+  --glass-hover-border: hsla(190, 100%, 50%, 0.4);
+  --glow-primary: hsla(190, 100%, 50%, 0.5);
+  --glow-secondary: hsla(190, 100%, 70%, 0.3);
+  --android-led: hsl(190, 100%, 50%);
+  --warning-amber: hsl(30, 100%, 60%);
 }
 
 .dark {
-  --background: hsl(265, 25%, 3%);
-  --foreground: hsl(270, 10%, 95%);
-  --muted: hsl(265, 15%, 8%);
-  --muted-foreground: hsl(270, 8%, 60%);
-  --popover: hsl(265, 20%, 6%);
-  --popover-foreground: hsl(270, 10%, 95%);
-  --card: hsl(265, 20%, 6%);
-  --card-foreground: hsl(270, 10%, 95%);
-  --border: hsl(270, 15%, 20%);
-  --input: hsl(265, 15%, 10%);
-  --primary: hsl(285, 85%, 65%);
-  --primary-foreground: hsl(270, 10%, 98%);
-  --secondary: hsl(265, 15%, 10%);
-  --secondary-foreground: hsl(270, 8%, 90%);
-  --accent: hsl(275, 25%, 18%);
-  --accent-foreground: hsl(270, 8%, 90%);
-  --destructive: hsl(0, 75%, 40%);
+  /* Detroit: Become Human Color Scheme */
+  --background: hsl(207, 100%, 3%);
+  --foreground: hsl(190, 100%, 95%);
+  --muted: hsl(207, 60%, 8%);
+  --muted-foreground: hsl(190, 20%, 65%);
+  --popover: hsl(207, 90%, 6%);
+  --popover-foreground: hsl(190, 100%, 95%);
+  --card: hsl(207, 90%, 6%);
+  --card-foreground: hsl(190, 100%, 95%);
+  --border: hsl(190, 100%, 30%);
+  --input: hsl(207, 60%, 10%);
+  --primary: hsl(190, 100%, 50%);
+  --primary-foreground: hsl(210, 100%, 10%);
+  --secondary: hsl(207, 60%, 12%);
+  --secondary-foreground: hsl(190, 50%, 85%);
+  --accent: hsl(190, 100%, 35%);
+  --accent-foreground: hsl(190, 100%, 95%);
+  --destructive: hsl(14, 100%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(285, 70%, 70%);
-  --radius: 0.75rem;
+  --ring: hsl(190, 100%, 50%);
+  --radius: 0.25rem;
   
-  /* Enhanced glassmorphism variables */
-  --glass-bg: hsla(265, 20%, 6%, 0.25);
-  --glass-border: hsla(285, 50%, 60%, 0.15);
-  --glass-hover-bg: hsla(265, 20%, 8%, 0.4);
-  --glass-hover-border: hsla(285, 70%, 65%, 0.3);
-  --glow-primary: hsla(285, 85%, 65%, 0.4);
-  --glow-secondary: hsla(270, 60%, 70%, 0.2);
+  /* Detroit: Become Human glassmorphism variables */
+  --glass-bg: hsla(207, 90%, 6%, 0.3);
+  --glass-border: hsla(190, 100%, 50%, 0.2);
+  --glass-hover-bg: hsla(207, 90%, 8%, 0.5);
+  --glass-hover-border: hsla(190, 100%, 50%, 0.4);
+  --glow-primary: hsla(190, 100%, 50%, 0.5);
+  --glow-secondary: hsla(190, 100%, 70%, 0.3);
+  --android-led: hsl(190, 100%, 50%);
+  --warning-amber: hsl(30, 100%, 60%);
 }
 
 @layer base {
@@ -404,4 +410,731 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--primary), var(--glow-secondary));
+}
+
+/* Detroit: Become Human Specific Effects */
+
+/* Scanline effect */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 217, 255, 0.015) 0px,
+    rgba(0, 217, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanline-move 8s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  animation: glitch-1 2.5s infinite;
+  color: #00D9FF;
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 2.5s infinite;
+  color: #FF6B35;
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(2px, 2px);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(2px, -2px);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-2 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(2px, -2px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-2px, 2px);
+    opacity: 0;
+  }
+  75% {
+    transform: translate(2px, 2px);
+    opacity: 0.7;
+  }
+}
+
+/* Android LED indicator */
+.android-led {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--android-led);
+  box-shadow: 
+    0 0 10px var(--android-led),
+    0 0 20px var(--android-led),
+    0 0 30px var(--android-led),
+    inset 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: led-pulse 2s ease-in-out infinite;
+}
+
+@keyframes led-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+}
+
+/* Hexagonal shapes */
+.hexagon {
+  position: relative;
+  width: 60px;
+  height: 34.64px;
+  background: var(--glass-bg);
+  border-left: 1px solid var(--glow-primary);
+  border-right: 1px solid var(--glow-primary);
+  box-shadow: 0 0 20px var(--glow-primary);
+}
+
+.hexagon::before,
+.hexagon::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+}
+
+.hexagon::before {
+  bottom: 100%;
+  border-bottom: 17.32px solid var(--glass-bg);
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.hexagon::after {
+  top: 100%;
+  border-top: 17.32px solid var(--glass-bg);
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+/* Circuit pattern background - more subtle */
+.circuit-pattern {
+  background-image: 
+    linear-gradient(90deg, rgba(0, 217, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(rgba(0, 217, 255, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.4;
+}
+
+/* Holographic effect */
+.holographic {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 217, 255, 0.1) 0%,
+    rgba(0, 180, 216, 0.05) 25%,
+    rgba(0, 217, 255, 0.1) 50%,
+    rgba(0, 180, 216, 0.05) 75%,
+    rgba(0, 217, 255, 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-shift 3s ease-in-out infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Data stream effect */
+.data-stream {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.data-stream::before {
+  content: '01001000 01010101 01001101 01000001 01001110';
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 8px;
+  color: var(--glow-primary);
+  opacity: 0.1;
+  white-space: nowrap;
+  animation: data-scroll 20s linear infinite;
+}
+
+@keyframes data-scroll {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* System text styling */
+.system-text {
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--glow-primary);
+}
+
+/* HUD border effect */
+.hud-border {
+  position: relative;
+  border: 2px solid var(--glow-primary);
+  box-shadow: 
+    0 0 10px var(--glow-primary),
+    inset 0 0 10px rgba(0, 217, 255, 0.1);
+}
+
+.hud-border::before,
+.hud-border::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 5px var(--glow-primary);
+}
+
+.hud-border::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.hud-border::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Diagnostic panel styling - more transparent for better photo visibility */
+.diagnostic-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 30, 60, 0.5) 0%,
+    rgba(0, 20, 40, 0.6) 100%
+  );
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  box-shadow: 
+    0 0 30px rgba(0, 217, 255, 0.2),
+    inset 0 0 30px rgba(0, 217, 255, 0.05);
+  backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* Probability indicator */
+.probability-bar {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 217, 255, 0.2);
+  overflow: hidden;
+}
+
+.probability-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--android-led), var(--glow-secondary));
+  box-shadow: 0 0 10px var(--android-led);
+  animation: probability-pulse 2s ease-in-out infinite;
+}
+
+@keyframes probability-pulse {
+  0%, 100% {
+    width: 70%;
+    opacity: 1;
+  }
+  50% {
+    width: 85%;
+    opacity: 0.8;
+  }
+}
+
+/* Digital noise effect */
+.digital-noise {
+  position: relative;
+}
+
+.digital-noise::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  pointer-events: none;
+  animation: noise-flicker 0.2s infinite;
+}
+
+@keyframes noise-flicker {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* Enhanced Detroit: Become Human Effects */
+
+/* Advanced holographic distortion */
+.holo-distortion {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-distortion::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 217, 255, 0.03) 2px,
+    rgba(0, 217, 255, 0.03) 4px
+  );
+  animation: holo-scan 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes holo-scan {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(50%) rotate(0deg);
+  }
+}
+
+/* Chromatic aberration effect */
+.chromatic-text {
+  position: relative;
+  color: var(--primary);
+}
+
+.chromatic-text::before,
+.chromatic-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.chromatic-text::before {
+  color: #00D9FF;
+  animation: chromatic-r 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+.chromatic-text::after {
+  color: #00B4D8;
+  animation: chromatic-b 3s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes chromatic-r {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(1px, 0);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translate(-1px, 0);
+    opacity: 0.6;
+  }
+}
+
+@keyframes chromatic-b {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(-1px, 0);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(1px, 0);
+    opacity: 0.7;
+  }
+}
+
+/* Matrix-style digital rain effect */
+.digital-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+}
+
+/* Pulsing grid overlay */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-pulse 4s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Enhanced glow pulse for LEDs */
+@keyframes enhanced-led-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 
+      0 0 10px var(--android-led),
+      0 0 20px var(--android-led),
+      0 0 30px var(--android-led),
+      0 0 40px var(--android-led),
+      inset 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.98);
+    box-shadow: 
+      0 0 15px var(--android-led),
+      0 0 30px var(--android-led),
+      0 0 45px var(--android-led),
+      0 0 60px var(--android-led),
+      inset 0 0 15px rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* Scan line sweep effect */
+.scan-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 217, 255, 0.8), 
+    transparent
+  );
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+  animation: scan-sweep-anim 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scan-sweep-anim {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Energy pulse rings */
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::before,
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--android-led);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse-ring-anim 2s ease-out infinite;
+  opacity: 0;
+}
+
+.pulse-ring::after {
+  animation-delay: 1s;
+}
+
+@keyframes pulse-ring-anim {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Holographic flicker */
+@keyframes holo-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0.6;
+  }
+  99.5% {
+    opacity: 1;
+  }
+}
+
+.holo-flicker {
+  animation: holo-flicker 5s infinite;
+}
+
+/* Cyber text glow */
+.cyber-glow {
+  text-shadow: 
+    0 0 5px var(--android-led),
+    0 0 10px var(--android-led),
+    0 0 20px var(--android-led),
+    0 0 40px var(--android-led),
+    0 0 80px var(--android-led);
+  animation: cyber-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cyber-glow-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px var(--android-led),
+      0 0 10px var(--android-led),
+      0 0 20px var(--android-led),
+      0 0 40px var(--android-led);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px var(--android-led),
+      0 0 20px var(--android-led),
+      0 0 30px var(--android-led),
+      0 0 50px var(--android-led),
+      0 0 100px var(--android-led);
+  }
+}
+
+/* Tech border animation */
+.tech-border {
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.tech-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  background: linear-gradient(45deg, 
+    var(--android-led) 0%, 
+    transparent 50%, 
+    var(--android-led) 100%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: tech-border-rotate 3s linear infinite;
+}
+
+@keyframes tech-border-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* 3D Card Effects */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+}
+
+.card-3d-inner {
+  transform: translateZ(20px);
+}
+
+/* Depth layers for parallax effect */
+.depth-layer-1 {
+  transform: translateZ(10px);
+}
+
+.depth-layer-2 {
+  transform: translateZ(20px);
+}
+
+.depth-layer-3 {
+  transform: translateZ(30px);
+}
+
+/* Enhanced text effects with depth */
+.text-3d {
+  text-shadow: 
+    1px 1px 0 rgba(0, 217, 255, 0.2),
+    2px 2px 0 rgba(0, 217, 255, 0.15),
+    3px 3px 0 rgba(0, 217, 255, 0.1),
+    4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Audio reactive border pulse */
+@keyframes audio-pulse-border {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px var(--android-led),
+      0 0 40px var(--android-led),
+      inset 0 0 20px rgba(0, 217, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px var(--android-led),
+      0 0 60px var(--android-led),
+      0 0 80px var(--android-led),
+      inset 0 0 30px rgba(0, 217, 255, 0.2);
+  }
+}
+
+/* Perspective container */
+.perspective-container {
+  perspective: 1500px;
+  perspective-origin: center;
+}
+
+/* Floating animation with music */
+@keyframes float-music {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0px);
+  }
+  50% {
+    transform: translateY(-10px) translateZ(5px);
+  }
+}
+
+/* Glow intensity animation */
+@keyframes glow-intensity {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 20px var(--android-led));
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 40px var(--android-led));
+  }
 }

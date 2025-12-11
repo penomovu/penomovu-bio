@@ -12,12 +12,12 @@ export default function VideoBackground({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Auto-play the video with sound only when shouldPlay is true
+    // Auto-play the video muted only when shouldPlay is true
     if (videoRef.current && shouldPlay) {
       const video = videoRef.current;
 
-      // Configure video for autoplay with sound
-      video.muted = false; // Sound on by default
+      // Configure video for muted autoplay
+      video.muted = true; // Always muted
       video.playsInline = true;
       video.controls = false;
       video.disablePictureInPicture = true;
@@ -29,38 +29,10 @@ export default function VideoBackground({
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Video autoplay with sound started successfully');
+              console.log('Video autoplay started successfully (muted)');
             })
             .catch(error => {
-              console.log('Autoplay with sound blocked, trying muted autoplay:', error);
-
-              // Fallback: Try muted autoplay first, then unmute on interaction
-              video.muted = true;
-              video.play()
-                .then(() => {
-                  console.log('Muted autoplay started, will unmute on user interaction');
-
-                  // Unmute on first user interaction
-                  const handleUserInteraction = () => {
-                    video.muted = false;
-                    console.log('Video unmuted after user interaction');
-
-                    // Remove listeners after unmuting
-                    document.removeEventListener('click', handleUserInteraction);
-                    document.removeEventListener('touchstart', handleUserInteraction);
-                    document.removeEventListener('keydown', handleUserInteraction);
-                    document.removeEventListener('scroll', handleUserInteraction);
-                  };
-
-                  // Listen for various interaction types to unmute
-                  document.addEventListener('click', handleUserInteraction, { passive: true });
-                  document.addEventListener('touchstart', handleUserInteraction, { passive: true });
-                  document.addEventListener('keydown', handleUserInteraction, { passive: true });
-                  document.addEventListener('scroll', handleUserInteraction, { passive: true });
-                })
-                .catch(fallbackError => {
-                  console.log('Even muted autoplay failed:', fallbackError);
-                });
+              console.log('Autoplay failed:', error);
             });
         }
       };
@@ -83,49 +55,51 @@ export default function VideoBackground({
         className="w-full h-full object-cover"
         style={{ 
           opacity,
-          filter: 'contrast(1.1) brightness(0.8) saturate(1.2)'
+          filter: 'contrast(1.1) brightness(0.9) saturate(1.2) hue-rotate(5deg)'
         }}
         autoPlay
         loop
-        muted={false} // Sound on by default
+        muted={true} // Always muted
         playsInline
         preload="metadata"
         controls={false}
       >
-        <source src="/videos/plenka - cascade [escapism].mp4" type="video/mp4" />
+        <source src="/videos/detroit-become-human.mp4" type="video/mp4" />
         {/* Fallback background if video fails to load */}
         <div 
-          className="w-full h-full bg-gradient-to-br from-purple-900 via-background to-purple-800"
+          className="w-full h-full bg-gradient-to-br from-cyan-900 via-background to-blue-900"
         />
       </video>
       
-      {/* Enhanced video overlay */}
+      {/* Detroit: Become Human cyan overlay - much lighter */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse at top, hsla(285, 40%, 8%, 0.3) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom, hsla(260, 25%, 2%, 0.4) 0%, transparent 50%),
-            linear-gradient(180deg, transparent 0%, hsla(265, 30%, 4%, 0.2) 50%, transparent 100%)
+            radial-gradient(ellipse at top, hsla(190, 100%, 20%, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse at bottom, hsla(207, 100%, 3%, 0.15) 0%, transparent 50%)
           `
         }}
       />
       
-      {/* Animated gradient overlay */}
+      {/* Animated cyan gradient overlay - very subtle */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-30"
+        className="absolute inset-0 pointer-events-none opacity-10"
         style={{
           background: `
             linear-gradient(45deg, 
-              hsla(285, 85%, 65%, 0.1) 0%, 
+              hsla(190, 100%, 50%, 0.08) 0%, 
               transparent 25%, 
-              hsla(270, 60%, 70%, 0.1) 50%, 
+              hsla(190, 100%, 70%, 0.05) 50%, 
               transparent 75%, 
-              hsla(285, 85%, 65%, 0.1) 100%
+              hsla(190, 100%, 50%, 0.08) 100%
             )`,
           animation: 'gradient-shift 8s ease-in-out infinite'
         }}
       />
+      
+      {/* Scanlines - very subtle */}
+      <div className="absolute inset-0 pointer-events-none scanlines" style={{ opacity: 0.3 }} />
     </div>
   );
 }
