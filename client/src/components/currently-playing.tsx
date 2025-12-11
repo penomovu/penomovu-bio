@@ -1,63 +1,108 @@
-import { Music } from "lucide-react";
+import { Music, Activity } from "lucide-react";
+import { useState } from "react";
 
 export default function CurrentlyPlaying() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div 
-      className="fixed bottom-6 right-6 z-20 transition-all duration-500 group glass-enhanced"
+      className="fixed bottom-6 left-6 z-20 transition-all duration-500 group diagnostic-panel hud-border"
       style={{
-        borderRadius: '1rem',
-        padding: '1rem 1.25rem',
+        padding: '0.875rem 1rem',
         fontSize: '0.875rem',
         color: 'var(--foreground)',
-        maxWidth: '240px',
-        boxShadow: '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 20px var(--glow-secondary), inset 0 1px 0 var(--glass-border)'
+        maxWidth: '280px',
+        border: '1px solid rgba(0, 217, 255, 0.3)',
+        boxShadow: isHovered 
+          ? '0 12px 48px hsla(0, 0%, 0%, 0.6), 0 0 40px var(--android-led), inset 0 0 20px rgba(0, 217, 255, 0.1)' 
+          : '0 8px 32px hsla(0, 0%, 0%, 0.5), 0 0 20px var(--android-led)'
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'var(--glass-hover-border)';
-        e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 12px 48px hsla(0, 0%, 0%, 0.4), 0 0 30px var(--glow-primary), inset 0 1px 0 var(--glass-hover-border)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'var(--glass-border)';
-        e.currentTarget.style.transform = 'scale(1) translateY(0)';
-        e.currentTarget.style.boxShadow = '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 20px var(--glow-secondary), inset 0 1px 0 var(--glass-border)';
-      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
+      {/* System Label */}
+      <div className="system-text text-xs mb-2 flex items-center justify-between" style={{ opacity: 0.7 }}>
+        <span>AUDIO PLAYBACK</span>
+        <Activity 
+          className="h-3 w-3 animate-pulse" 
+          style={{ 
+            color: 'var(--android-led)',
+            filter: 'drop-shadow(0 0 6px var(--android-led))'
+          }}
+        />
+      </div>
+
       <div className="flex items-center gap-3">
+        {/* Animated Audio Icon */}
         <div className="relative">
-          <Music 
-            className="h-4 w-4 transition-all duration-300" 
+          <div className="android-led" style={{ width: '10px', height: '10px' }} />
+          <div 
+            className="absolute inset-0 animate-pulse"
+            style={{
+              background: 'radial-gradient(circle, var(--android-led) 0%, transparent 70%)',
+              borderRadius: '50%',
+              filter: 'blur(6px)',
+              transform: 'scale(2)'
+            }}
+          />
+        </div>
+
+        <div className="flex-1 truncate">
+          <div 
+            className="font-mono text-sm truncate transition-all duration-300"
             style={{ 
               color: 'var(--primary)',
-              filter: 'drop-shadow(0 0 8px var(--glow-primary))'
+              textShadow: isHovered ? '0 0 10px var(--android-led)' : 'none',
+              letterSpacing: '0.02em'
             }}
-          />
+          >
+            HOSTAGE
+          </div>
           <div 
-            className="absolute inset-0 animate-pulse opacity-30"
-            style={{
-              background: 'radial-gradient(circle, var(--glow-primary) 0%, transparent 70%)',
-              borderRadius: '50%',
-              filter: 'blur(4px)'
-            }}
-          />
-        </div>
-        <div className="truncate">
-          <div 
-            className="font-semibold truncate transition-all duration-300"
+            className="system-text truncate"
             style={{ 
-              color: 'var(--foreground)',
-              textShadow: 'group-hover:0 0 10px var(--glow-secondary)'
+              color: 'var(--muted-foreground)',
+              fontSize: '10px',
+              opacity: 0.8,
+              marginTop: '2px'
             }}
           >
-            cascade
-          </div>
-          <div 
-            className="opacity-70 truncate text-sm font-medium"
-            style={{ color: 'var(--muted-foreground)' }}
-          >
-            plenka
+            NIMA FAKHRARA
           </div>
         </div>
+
+        {/* Audio Visualizer Bars */}
+        <div className="flex items-center gap-0.5 h-4">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="w-0.5 bg-cyan-400 rounded-full"
+              style={{
+                height: '100%',
+                opacity: 0.6,
+                animation: `pulse ${0.5 + i * 0.1}s ease-in-out infinite`,
+                animationDelay: `${i * 0.1}s`,
+                boxShadow: '0 0 4px var(--android-led)'
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Progress Indicator */}
+      <div 
+        className="mt-2 h-0.5 rounded-full overflow-hidden"
+        style={{ background: 'rgba(0, 217, 255, 0.2)' }}
+      >
+        <div 
+          className="h-full"
+          style={{
+            background: 'linear-gradient(90deg, var(--android-led), var(--glow-secondary))',
+            boxShadow: '0 0 10px var(--android-led)',
+            width: '100%',
+            animation: 'shimmer 2s linear infinite'
+          }}
+        />
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export default function ProfileCard() {
     <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
       {/* Android Diagnostic Panel */}
       <Card 
-        className="diagnostic-panel animate-slide-up transition-all duration-500 relative overflow-hidden hud-border digital-noise" 
+        className="diagnostic-panel animate-slide-up transition-all duration-500 relative overflow-hidden hud-border digital-noise scan-sweep holo-distortion" 
         style={{ 
           animationDelay: "0.2s",
           transform: isHovered ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
@@ -59,7 +59,10 @@ export default function ProfileCard() {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Holographic overlay */}
-        <div className="absolute inset-0 holographic pointer-events-none" />
+        <div className="absolute inset-0 holographic holo-flicker pointer-events-none" />
+        
+        {/* Cyber grid overlay */}
+        <div className="absolute inset-0 cyber-grid pointer-events-none" style={{ opacity: 0.1 }} />
         
         {/* Data stream effect */}
         <div className="data-stream" />
@@ -93,11 +96,10 @@ export default function ProfileCard() {
               DESIGNATION
             </div>
             <h1 
-              className="text-2xl sm:text-3xl font-light mb-2 transition-all duration-500 relative"
+              className="text-2xl sm:text-3xl font-light mb-2 transition-all duration-500 relative chromatic-text cyber-glow"
               data-text="penomovu"
               style={{ 
                 color: 'var(--primary)',
-                textShadow: '0 0 20px var(--glow-primary), 0 2px 4px hsla(0, 0%, 0%, 0.5)',
                 letterSpacing: '0.05em',
                 fontWeight: 300
               }}

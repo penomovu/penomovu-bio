@@ -22,7 +22,7 @@ export default function EnhancedProfileImage({
   discordCopied
 }: EnhancedProfileImageProps) {
   return (
-    <div className="relative cursor-pointer group">
+    <div className="relative cursor-pointer group pulse-ring">
       {/* Outer glow rings */}
       <div 
         className={`absolute inset-0 rounded-full transition-all duration-1000 ${

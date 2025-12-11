@@ -16,7 +16,7 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 scanlines circuit-pattern"
+      className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 scanlines circuit-pattern holo-distortion"
       style={{
         backgroundColor: 'hsl(207, 100%, 3%)',
         opacity: isClicked ? 0 : 1,
@@ -25,7 +25,7 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
     >
       {/* Detroit: Become Human background with cyan orbs */}
       <div 
-        className="absolute inset-0"
+        className="absolute inset-0 cyber-grid"
         style={{
           background: 'radial-gradient(ellipse at center, hsl(207, 100%, 8%) 0%, hsl(207, 90%, 4%) 40%, hsl(207, 100%, 2%) 100%)'
         }}
@@ -89,15 +89,10 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
         </div>
         
         <h1 
-          className="text-5xl sm:text-7xl font-light mb-3 animate-pulse glow-text"
+          className="text-5xl sm:text-7xl font-light mb-3 chromatic-text cyber-glow holo-flicker"
+          data-text="penomovu"
           style={{ 
-            color: 'var(--foreground)',
-            textShadow: '0 0 40px var(--android-led), 0 0 80px var(--glow-secondary), 0 4px 8px hsla(0, 0%, 0%, 0.4)',
-            background: 'linear-gradient(45deg, var(--primary), var(--glow-secondary), var(--primary))',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            animationDuration: '3s',
+            color: 'var(--primary)',
             letterSpacing: '0.05em'
           }}
         >
