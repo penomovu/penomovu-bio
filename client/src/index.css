@@ -107,7 +107,288 @@
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* Custom scrollbar */
+/* Enhanced particle system */
+.particle-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--glow-primary);
+  border-radius: 50%;
+  animation: float-particle 8s infinite linear;
+  opacity: 0.6;
+}
+
+.particle:nth-child(odd) {
+  background: var(--glow-secondary);
+  animation-duration: 10s;
+  animation-delay: -2s;
+}
+
+.particle:nth-child(3n) {
+  animation-duration: 12s;
+  animation-delay: -4s;
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Enhanced geometric background elements */
+.geometric-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.03;
+}
+
+.geometric-shape {
+  position: absolute;
+  border: 1px solid var(--glow-primary);
+  animation: geometric-float 20s infinite ease-in-out;
+}
+
+.geometric-shape:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.geometric-shape:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  bottom: 30%;
+  left: 15%;
+  animation-delay: -5s;
+}
+
+.geometric-shape:nth-child(3) {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 30%;
+  animation-delay: -10s;
+}
+
+@keyframes geometric-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+    opacity: 0.2;
+  }
+}
+
+/* Enhanced glow effects */
+.glow-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, var(--glow-primary), var(--glow-secondary), var(--glow-primary));
+  animation: rotate-glow 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.glow-ring.active {
+  opacity: 0.6;
+}
+
+@keyframes rotate-glow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced text effects */
+.text-gradient-animated {
+  background: linear-gradient(45deg, var(--primary), var(--glow-secondary), var(--primary));
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease-in-out infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Enhanced glassmorphism with reflections */
+.glass-enhanced {
+  background: linear-gradient(135deg, 
+    hsla(265, 20%, 6%, 0.4) 0%, 
+    hsla(265, 20%, 6%, 0.2) 50%, 
+    hsla(285, 50%, 60%, 0.1) 100%);
+  backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px hsla(0, 0%, 0%, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Ripple effect for buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Aurora and floating spot animations */
+@keyframes rotate-aurora {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-spot {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.1;
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px) scale(1.1);
+    opacity: 0.2;
+  }
+  66% {
+    transform: translateY(10px) translateX(-5px) scale(0.9);
+    opacity: 0.15;
+  }
+}
+
+@keyframes pulse-spot {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Enhanced parallax effect */
+.parallax-slow {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Enhanced typing effect for text */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(40, end);
+}
+
+/* Enhanced backdrop effects */
+.backdrop-enhanced {
+  backdrop-filter: blur(20px) saturate(200%) contrast(110%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced focus states */
+.focus-enhanced:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 2px var(--glow-primary),
+    0 0 20px var(--glow-primary);
+}
+
+/* Enhanced scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -117,10 +398,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(270, 20%, 30%);
+  background: linear-gradient(180deg, var(--glow-primary), var(--glow-secondary));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(270, 25%, 40%);
+  background: linear-gradient(180deg, var(--primary), var(--glow-secondary));
 }
