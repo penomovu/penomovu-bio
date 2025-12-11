@@ -12,12 +12,12 @@ export default function VideoBackground({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Auto-play the video with sound only when shouldPlay is true
+    // Auto-play the video muted only when shouldPlay is true
     if (videoRef.current && shouldPlay) {
       const video = videoRef.current;
 
-      // Configure video for autoplay with sound
-      video.muted = false; // Sound on by default
+      // Configure video for muted autoplay
+      video.muted = true; // Always muted
       video.playsInline = true;
       video.controls = false;
       video.disablePictureInPicture = true;
@@ -29,38 +29,10 @@ export default function VideoBackground({
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Video autoplay with sound started successfully');
+              console.log('Video autoplay started successfully (muted)');
             })
             .catch(error => {
-              console.log('Autoplay with sound blocked, trying muted autoplay:', error);
-
-              // Fallback: Try muted autoplay first, then unmute on interaction
-              video.muted = true;
-              video.play()
-                .then(() => {
-                  console.log('Muted autoplay started, will unmute on user interaction');
-
-                  // Unmute on first user interaction
-                  const handleUserInteraction = () => {
-                    video.muted = false;
-                    console.log('Video unmuted after user interaction');
-
-                    // Remove listeners after unmuting
-                    document.removeEventListener('click', handleUserInteraction);
-                    document.removeEventListener('touchstart', handleUserInteraction);
-                    document.removeEventListener('keydown', handleUserInteraction);
-                    document.removeEventListener('scroll', handleUserInteraction);
-                  };
-
-                  // Listen for various interaction types to unmute
-                  document.addEventListener('click', handleUserInteraction, { passive: true });
-                  document.addEventListener('touchstart', handleUserInteraction, { passive: true });
-                  document.addEventListener('keydown', handleUserInteraction, { passive: true });
-                  document.addEventListener('scroll', handleUserInteraction, { passive: true });
-                })
-                .catch(fallbackError => {
-                  console.log('Even muted autoplay failed:', fallbackError);
-                });
+              console.log('Autoplay failed:', error);
             });
         }
       };
@@ -87,7 +59,7 @@ export default function VideoBackground({
         }}
         autoPlay
         loop
-        muted={false} // Sound on by default
+        muted={true} // Always muted
         playsInline
         preload="metadata"
         controls={false}

@@ -6,8 +6,8 @@ import CurrentlyPlaying from "@/components/currently-playing";
 import ParticleSystem from "@/components/particle-system";
 import GeometricBackground from "@/components/geometric-background";
 import AnimatedBackground from "@/components/animated-background";
-import DetroitAudioPlayer from "@/components/detroit-audio-player";
 import HexagonalBackground from "@/components/hexagonal-background";
+import BackgroundAudio from "@/components/background-audio";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -315,8 +315,8 @@ export default function Home() {
         {/* Currently Playing */}
         {hasEntered && <CurrentlyPlaying />}
         
-        {/* Detroit Audio Player */}
-        {hasEntered && <DetroitAudioPlayer shouldPlay={hasEntered} />}
+        {/* Background Audio - Detroit Soundtrack */}
+        <BackgroundAudio shouldPlay={hasEntered} />
         
         {/* Landing Overlay */}
         {!hasEntered && (
