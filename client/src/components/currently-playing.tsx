@@ -3,11 +3,8 @@ import { Music } from "lucide-react";
 export default function CurrentlyPlaying() {
   return (
     <div 
-      className="fixed bottom-6 right-6 z-20 transition-all duration-500 group"
+      className="fixed bottom-6 right-6 z-20 transition-all duration-500 group glass-enhanced"
       style={{
-        background: 'var(--glass-bg)',
-        backdropFilter: 'blur(20px) saturate(180%)',
-        border: '1px solid var(--glass-border)',
         borderRadius: '1rem',
         padding: '1rem 1.25rem',
         fontSize: '0.875rem',
@@ -16,13 +13,11 @@ export default function CurrentlyPlaying() {
         boxShadow: '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 20px var(--glow-secondary), inset 0 1px 0 var(--glass-border)'
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'var(--glass-hover-bg)';
         e.currentTarget.style.borderColor = 'var(--glass-hover-border)';
         e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
         e.currentTarget.style.boxShadow = '0 12px 48px hsla(0, 0%, 0%, 0.4), 0 0 30px var(--glow-primary), inset 0 1px 0 var(--glass-hover-border)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'var(--glass-bg)';
         e.currentTarget.style.borderColor = 'var(--glass-border)';
         e.currentTarget.style.transform = 'scale(1) translateY(0)';
         e.currentTarget.style.boxShadow = '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 20px var(--glow-secondary), inset 0 1px 0 var(--glass-border)';

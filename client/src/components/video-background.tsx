@@ -81,7 +81,10 @@ export default function VideoBackground({
       <video
         ref={videoRef}
         className="w-full h-full object-cover"
-        style={{ opacity }}
+        style={{ 
+          opacity,
+          filter: 'contrast(1.1) brightness(0.8) saturate(1.2)'
+        }}
         autoPlay
         loop
         muted={false} // Sound on by default
@@ -95,6 +98,34 @@ export default function VideoBackground({
           className="w-full h-full bg-gradient-to-br from-purple-900 via-background to-purple-800"
         />
       </video>
+      
+      {/* Enhanced video overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at top, hsla(285, 40%, 8%, 0.3) 0%, transparent 50%),
+            radial-gradient(ellipse at bottom, hsla(260, 25%, 2%, 0.4) 0%, transparent 50%),
+            linear-gradient(180deg, transparent 0%, hsla(265, 30%, 4%, 0.2) 50%, transparent 100%)
+          `
+        }}
+      />
+      
+      {/* Animated gradient overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-30"
+        style={{
+          background: `
+            linear-gradient(45deg, 
+              hsla(285, 85%, 65%, 0.1) 0%, 
+              transparent 25%, 
+              hsla(270, 60%, 70%, 0.1) 50%, 
+              transparent 75%, 
+              hsla(285, 85%, 65%, 0.1) 100%
+            )`,
+          animation: 'gradient-shift 8s ease-in-out infinite'
+        }}
+      />
     </div>
   );
 }

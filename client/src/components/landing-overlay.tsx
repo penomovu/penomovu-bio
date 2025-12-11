@@ -83,24 +83,20 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
         
         <button
           onClick={handleClick}
-          className="group relative px-10 py-5 text-xl font-medium rounded-full transition-all duration-500 hover:scale-110 active:scale-95"
+          className="group relative px-10 py-5 text-xl font-medium rounded-full transition-all duration-500 hover:scale-110 active:scale-95 glass-enhanced ripple"
           style={{
-            background: 'var(--glass-bg)',
             borderWidth: '2px',
             borderStyle: 'solid',
             borderColor: 'var(--glass-border)',
             color: 'var(--foreground)',
-            backdropFilter: 'blur(20px) saturate(180%)',
             boxShadow: '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 40px var(--glow-primary)'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'var(--glass-hover-bg)';
             e.currentTarget.style.borderColor = 'var(--glass-hover-border)';
             e.currentTarget.style.boxShadow = '0 12px 48px hsla(0, 0%, 0%, 0.4), 0 0 60px var(--glow-primary)';
             e.currentTarget.style.color = 'var(--primary)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'var(--glass-bg)';
             e.currentTarget.style.borderColor = 'var(--glass-border)';
             e.currentTarget.style.boxShadow = '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 40px var(--glow-primary)';
             e.currentTarget.style.color = 'var(--foreground)';

@@ -58,17 +58,12 @@ export default function SocialLinks() {
           <button
             key={link.name}
             onClick={() => handleSocialClick(link.url)}
-            className="group relative rounded-lg p-3 sm:p-4 flex items-center gap-3 transition-all duration-500 overflow-hidden"
+            className="group relative rounded-lg p-3 sm:p-4 flex items-center gap-3 transition-all duration-500 overflow-hidden glass-enhanced ripple"
             style={{
-              background: isHovered ? 'var(--glass-hover-bg)' : 'var(--glass-bg)',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderColor: isHovered ? 'var(--glass-hover-border)' : 'var(--glass-border)',
-              backdropFilter: 'blur(16px) saturate(150%)',
               transform: isHovered ? 'translateY(-2px) scale(1.02)' : 'translateY(0) scale(1)',
               boxShadow: isHovered 
-                ? '0 8px 32px hsla(0, 0%, 0%, 0.3), 0 0 20px var(--glow-primary), inset 0 1px 0 var(--glass-hover-border)' 
-                : '0 4px 16px hsla(0, 0%, 0%, 0.2), inset 0 1px 0 var(--glass-border)'
+                ? '0 12px 40px hsla(0, 0%, 0%, 0.4), 0 0 30px var(--glow-primary), inset 0 1px 0 var(--glass-hover-border)' 
+                : '0 8px 24px hsla(0, 0%, 0%, 0.2), inset 0 1px 0 var(--glass-border)'
             }}
             onMouseEnter={() => setHoveredLink(link.name)}
             onMouseLeave={() => setHoveredLink(null)}

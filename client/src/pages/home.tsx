@@ -3,6 +3,9 @@ import VideoBackground from "@/components/video-background";
 import ProfileCard from "@/components/profile-card";
 import LandingOverlay from "@/components/landing-overlay";
 import CurrentlyPlaying from "@/components/currently-playing";
+import ParticleSystem from "@/components/particle-system";
+import GeometricBackground from "@/components/geometric-background";
+import AnimatedBackground from "@/components/animated-background";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -281,11 +284,20 @@ export default function Home() {
           fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
         }}
       >
-        {/* Video Background */}
+        {/* Enhanced Video Background */}
         <VideoBackground 
           opacity={0.6}
           shouldPlay={hasEntered}
         />
+        
+        {/* Animated Background Effects */}
+        <AnimatedBackground />
+        
+        {/* Particle System */}
+        <ParticleSystem />
+        
+        {/* Geometric Background Elements */}
+        <GeometricBackground />
 
         {/* Main Content */}
         <div 
