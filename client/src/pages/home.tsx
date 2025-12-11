@@ -8,9 +8,13 @@ import GeometricBackground from "@/components/geometric-background";
 import AnimatedBackground from "@/components/animated-background";
 import HexagonalBackground from "@/components/hexagonal-background";
 import BackgroundAudio from "@/components/background-audio";
+import AudioVisualizer from "@/components/audio-visualizer";
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false);
+  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
+  const [audioIntensity, setAudioIntensity] = useState(0);
+  const [frequencyData, setFrequencyData] = useState({ bass: 0, mid: 0, treble: 0 });
 
   useEffect(() => {
     // Handle responsive video background
@@ -309,14 +313,26 @@ export default function Home() {
           className="relative min-h-screen flex items-center justify-center p-4 sm:p-8"
           style={{ zIndex: 10 }}
         >
-          <ProfileCard />
+          <ProfileCard audioIntensity={audioIntensity} frequencyData={frequencyData} />
         </div>
         
         {/* Currently Playing */}
         {hasEntered && <CurrentlyPlaying />}
         
         {/* Background Audio - Detroit Soundtrack */}
-        <BackgroundAudio shouldPlay={hasEntered} />
+        <BackgroundAudio 
+          shouldPlay={hasEntered} 
+          onAudioReady={setAudioElement}
+        />
+        
+        {/* Audio Visualizer */}
+        {audioElement && (
+          <AudioVisualizer 
+            audioElement={audioElement}
+            onBeatDetected={setAudioIntensity}
+            onFrequencyData={setFrequencyData}
+          />
+        )}
         
         {/* Landing Overlay */}
         {!hasEntered && (

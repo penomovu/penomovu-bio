@@ -8,7 +8,12 @@ import { useState, useEffect } from "react";
 
 
 
-export default function ProfileCard() {
+interface ProfileCardProps {
+  audioIntensity?: number;
+  frequencyData?: { bass: number; mid: number; treble: number };
+}
+
+export default function ProfileCard({ audioIntensity = 0, frequencyData }: ProfileCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [showDiscordTooltip, setShowDiscordTooltip] = useState(false);
@@ -16,6 +21,7 @@ export default function ProfileCard() {
   const [systemStability, setSystemStability] = useState(95);
   const [cpuLoad, setCpuLoad] = useState(23);
   const [memoryStatus, setMemoryStatus] = useState("OPTIMAL");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Fetch real server stats
@@ -44,19 +50,59 @@ export default function ProfileCard() {
     setTimeout(() => setDiscordCopied(false), 2000);
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setMousePosition({ x: 0.5, y: 0.5 });
+  };
+
+  // Calculate 3D transform based on mouse position
+  const get3DTransform = () => {
+    if (!isHovered) return 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+    
+    const { x, y } = mousePosition;
+    const rotateY = (x - 0.5) * 15; // -7.5 to 7.5 degrees
+    const rotateX = (y - 0.5) * -15; // -7.5 to 7.5 degrees
+    const scale = 1.05 + (audioIntensity * 0.03); // Pulse with music
+    
+    return `translateY(-12px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) perspective(1000px)`;
+  };
+
+  // Calculate glow intensity based on audio
+  const getGlowIntensity = () => {
+    const baseGlow = 'rgba(0, 217, 255, 0.3)';
+    const intensityGlow = `rgba(0, 217, 255, ${0.3 + (frequencyData?.bass || 0) * 0.4})`;
+    return isHovered ? intensityGlow : baseGlow;
+  };
+
   return (
-    <div className="max-w-md w-full mx-auto px-4 animate-fade-in">
+    <div 
+      className="max-w-md w-full mx-auto px-4 animate-fade-in"
+      style={{ perspective: '1000px' }}
+    >
       {/* Android Diagnostic Panel */}
       <Card 
-        className="diagnostic-panel animate-slide-up transition-all duration-500 relative overflow-hidden hud-border digital-noise scan-sweep holo-distortion" 
+        className="diagnostic-panel animate-slide-up transition-all duration-300 relative overflow-hidden hud-border digital-noise scan-sweep holo-distortion" 
         style={{ 
           animationDelay: "0.2s",
-          transform: isHovered ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
-          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-          border: '2px solid rgba(0, 217, 255, 0.3)',
+          transform: get3DTransform(),
+          transition: 'transform 0.3s ease-out, box-shadow 0.3s ease-out, border 0.3s ease-out',
+          border: `2px solid ${getGlowIntensity()}`,
+          boxShadow: isHovered 
+            ? `0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px ${getGlowIntensity()}, inset 0 0 30px rgba(0, 217, 255, 0.1)`
+            : '0 10px 30px rgba(0, 0, 0, 0.3)',
+          transformStyle: 'preserve-3d',
         }}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       >
         {/* Holographic overlay */}
         <div className="absolute inset-0 holographic holo-flicker pointer-events-none" />
@@ -95,17 +141,49 @@ export default function ProfileCard() {
             <div className="system-text text-xs mb-1" style={{ opacity: 0.6 }}>
               DESIGNATION
             </div>
-            <h1 
-              className="text-2xl sm:text-3xl font-light mb-2 transition-all duration-500 relative chromatic-text cyber-glow"
-              data-text="penomovu"
-              style={{ 
-                color: 'var(--primary)',
-                letterSpacing: '0.05em',
-                fontWeight: 300
-              }}
-            >
-              penomovu
-            </h1>
+            <div className="relative inline-block">
+              {/* Background glow that reacts to music */}
+              <div 
+                className="absolute inset-0 blur-2xl"
+                style={{
+                  background: `radial-gradient(circle, var(--android-led) 0%, transparent 70%)`,
+                  opacity: 0.3 + (frequencyData?.mid || 0) * 0.5,
+                  transform: `scale(${1 + (audioIntensity * 0.2)})`,
+                  transition: 'all 0.2s ease-out'
+                }}
+              />
+              <h1 
+                className="text-3xl sm:text-4xl font-light mb-2 transition-all duration-500 relative chromatic-text"
+                data-text="penomovu"
+                style={{ 
+                  color: 'var(--primary)',
+                  letterSpacing: '0.08em',
+                  fontWeight: 200,
+                  textShadow: `
+                    0 0 10px var(--android-led),
+                    0 0 20px var(--android-led),
+                    0 0 30px var(--android-led),
+                    0 0 ${40 + (frequencyData?.treble || 0) * 60}px var(--android-led),
+                    0 2px 4px rgba(0, 0, 0, 0.5)
+                  `,
+                  transform: `scale(${1 + (audioIntensity * 0.05)})`,
+                  transition: 'all 0.2s ease-out',
+                  WebkitTextStroke: '0.5px rgba(0, 217, 255, 0.3)',
+                }}
+              >
+                penomovu
+              </h1>
+              {/* Animated underline */}
+              <div 
+                className="h-0.5 mx-auto mt-1 rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, var(--android-led), transparent)',
+                  boxShadow: `0 0 10px var(--android-led)`,
+                  width: `${60 + (frequencyData?.bass || 0) * 40}%`,
+                  transition: 'width 0.2s ease-out'
+                }}
+              />
+            </div>
             
             <div className="system-text text-xs mb-1" style={{ opacity: 0.6 }}>
               PRIMARY FUNCTION

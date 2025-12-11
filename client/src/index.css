@@ -1060,3 +1060,78 @@
     filter: hue-rotate(360deg);
   }
 }
+
+/* 3D Card Effects */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+}
+
+.card-3d-inner {
+  transform: translateZ(20px);
+}
+
+/* Depth layers for parallax effect */
+.depth-layer-1 {
+  transform: translateZ(10px);
+}
+
+.depth-layer-2 {
+  transform: translateZ(20px);
+}
+
+.depth-layer-3 {
+  transform: translateZ(30px);
+}
+
+/* Enhanced text effects with depth */
+.text-3d {
+  text-shadow: 
+    1px 1px 0 rgba(0, 217, 255, 0.2),
+    2px 2px 0 rgba(0, 217, 255, 0.15),
+    3px 3px 0 rgba(0, 217, 255, 0.1),
+    4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Audio reactive border pulse */
+@keyframes audio-pulse-border {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px var(--android-led),
+      0 0 40px var(--android-led),
+      inset 0 0 20px rgba(0, 217, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px var(--android-led),
+      0 0 60px var(--android-led),
+      0 0 80px var(--android-led),
+      inset 0 0 30px rgba(0, 217, 255, 0.2);
+  }
+}
+
+/* Perspective container */
+.perspective-container {
+  perspective: 1500px;
+  perspective-origin: center;
+}
+
+/* Floating animation with music */
+@keyframes float-music {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0px);
+  }
+  50% {
+    transform: translateY(-10px) translateZ(5px);
+  }
+}
+
+/* Glow intensity animation */
+@keyframes glow-intensity {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 20px var(--android-led));
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 40px var(--android-led));
+  }
+}

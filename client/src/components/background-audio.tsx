@@ -2,15 +2,19 @@ import { useEffect, useRef } from "react";
 
 interface BackgroundAudioProps {
   shouldPlay?: boolean;
+  onAudioReady?: (audio: HTMLAudioElement) => void;
 }
 
-export default function BackgroundAudio({ shouldPlay = false }: BackgroundAudioProps) {
+export default function BackgroundAudio({ shouldPlay = false, onAudioReady }: BackgroundAudioProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (audioRef.current && shouldPlay) {
       const audio = audioRef.current;
       audio.volume = 0.3; // Set to 30% volume
+      
+      // Notify parent that audio is ready
+      onAudioReady?.(audio);
       
       const playPromise = audio.play();
       if (playPromise !== undefined) {
@@ -23,7 +27,7 @@ export default function BackgroundAudio({ shouldPlay = false }: BackgroundAudioP
           });
       }
     }
-  }, [shouldPlay]);
+  }, [shouldPlay, onAudioReady]);
 
   return (
     <audio
