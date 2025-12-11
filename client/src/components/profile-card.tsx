@@ -63,16 +63,16 @@ export default function ProfileCard({ audioIntensity = 0, frequencyData }: Profi
     setMousePosition({ x: 0.5, y: 0.5 });
   };
 
-  // Calculate 3D transform based on mouse position
+  // Calculate 3D transform based on mouse position - more responsive and smooth
   const get3DTransform = () => {
     if (!isHovered) return 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
     
     const { x, y } = mousePosition;
-    const rotateY = (x - 0.5) * 15; // -7.5 to 7.5 degrees
-    const rotateX = (y - 0.5) * -15; // -7.5 to 7.5 degrees
-    const scale = 1.05 + (audioIntensity * 0.03); // Pulse with music
+    const rotateY = (x - 0.5) * 20; // Increased range for more dramatic effect
+    const rotateX = (y - 0.5) * -20; // Increased range for more dramatic effect
+    const scale = 1.03 + (audioIntensity * 0.02); // Subtle pulse with music
     
-    return `translateY(-12px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) perspective(1000px)`;
+    return `translateY(-8px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
 
   // Calculate glow intensity based on audio
@@ -85,33 +85,34 @@ export default function ProfileCard({ audioIntensity = 0, frequencyData }: Profi
   return (
     <div 
       className="max-w-md w-full mx-auto px-4 animate-fade-in"
-      style={{ perspective: '1000px' }}
+      style={{ perspective: '1500px' }}
     >
       {/* Android Diagnostic Panel */}
       <Card 
-        className="diagnostic-panel animate-slide-up transition-all duration-300 relative overflow-hidden hud-border digital-noise scan-sweep holo-distortion" 
+        className="diagnostic-panel animate-slide-up relative overflow-hidden hud-border digital-noise scan-sweep holo-distortion" 
         style={{ 
           animationDelay: "0.2s",
           transform: get3DTransform(),
-          transition: 'transform 0.3s ease-out, box-shadow 0.3s ease-out, border 0.3s ease-out',
+          transition: 'transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease-out, border 0.15s ease-out',
           border: `2px solid ${getGlowIntensity()}`,
           boxShadow: isHovered 
-            ? `0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px ${getGlowIntensity()}, inset 0 0 30px rgba(0, 217, 255, 0.1)`
-            : '0 10px 30px rgba(0, 0, 0, 0.3)',
+            ? `0 20px 60px rgba(0, 0, 0, 0.6), 0 0 50px ${getGlowIntensity()}, inset 0 0 40px rgba(0, 217, 255, 0.08)`
+            : '0 10px 30px rgba(0, 0, 0, 0.4)',
           transformStyle: 'preserve-3d',
+          willChange: 'transform',
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Holographic overlay */}
-        <div className="absolute inset-0 holographic holo-flicker pointer-events-none" />
+        {/* Holographic overlay - more subtle */}
+        <div className="absolute inset-0 holographic holo-flicker pointer-events-none" style={{ opacity: 0.6 }} />
         
-        {/* Cyber grid overlay */}
-        <div className="absolute inset-0 cyber-grid pointer-events-none" style={{ opacity: 0.1 }} />
+        {/* Cyber grid overlay - more subtle */}
+        <div className="absolute inset-0 cyber-grid pointer-events-none" style={{ opacity: 0.05 }} />
         
-        {/* Data stream effect */}
-        <div className="data-stream" />
+        {/* Data stream effect - reduced */}
+        <div className="data-stream" style={{ opacity: 0.5 }} />
         <CardContent className="p-4 sm:p-6 relative z-10">
           {/* System Header */}
           <div className="mb-3 pb-2 border-b border-cyan-500/30">
@@ -123,7 +124,14 @@ export default function ProfileCard({ audioIntensity = 0, frequencyData }: Profi
 
           {/* Enhanced Profile Image */}
           <div className="flex justify-center mb-4 sm:mb-5 relative">
-            <div className="absolute -inset-4 border border-cyan-500/20 rounded-lg" />
+            <div 
+              className="absolute -inset-4 rounded-lg transition-all duration-300" 
+              style={{
+                border: '1px solid rgba(0, 217, 255, 0.25)',
+                boxShadow: isImageHovered ? '0 0 20px rgba(0, 217, 255, 0.3)' : 'none',
+                background: 'rgba(0, 30, 60, 0.1)'
+              }}
+            />
             <EnhancedProfileImage
               src="/profile-picture.png"
               alt="penomovu profile picture"
@@ -142,45 +150,47 @@ export default function ProfileCard({ audioIntensity = 0, frequencyData }: Profi
               DESIGNATION
             </div>
             <div className="relative inline-block">
-              {/* Background glow that reacts to music */}
+              {/* Background glow that reacts to music - more subtle */}
               <div 
-                className="absolute inset-0 blur-2xl"
+                className="absolute inset-0 blur-xl"
                 style={{
                   background: `radial-gradient(circle, var(--android-led) 0%, transparent 70%)`,
-                  opacity: 0.3 + (frequencyData?.mid || 0) * 0.5,
-                  transform: `scale(${1 + (audioIntensity * 0.2)})`,
-                  transition: 'all 0.2s ease-out'
+                  opacity: 0.4 + (frequencyData?.mid || 0) * 0.3,
+                  transform: `scale(${1.2 + (audioIntensity * 0.15)})`,
+                  transition: 'all 0.15s ease-out',
+                  filter: 'blur(30px)'
                 }}
               />
               <h1 
-                className="text-3xl sm:text-4xl font-light mb-2 transition-all duration-500 relative chromatic-text"
+                className="text-3xl sm:text-4xl font-light mb-2 transition-all relative chromatic-text"
                 data-text="penomovu"
                 style={{ 
                   color: 'var(--primary)',
-                  letterSpacing: '0.08em',
-                  fontWeight: 200,
+                  letterSpacing: '0.1em',
+                  fontWeight: 100,
                   textShadow: `
-                    0 0 10px var(--android-led),
-                    0 0 20px var(--android-led),
+                    0 0 15px var(--android-led),
                     0 0 30px var(--android-led),
-                    0 0 ${40 + (frequencyData?.treble || 0) * 60}px var(--android-led),
-                    0 2px 4px rgba(0, 0, 0, 0.5)
+                    0 0 45px var(--android-led),
+                    0 0 ${60 + (frequencyData?.treble || 0) * 40}px var(--android-led),
+                    0 3px 6px rgba(0, 0, 0, 0.6)
                   `,
-                  transform: `scale(${1 + (audioIntensity * 0.05)})`,
-                  transition: 'all 0.2s ease-out',
-                  WebkitTextStroke: '0.5px rgba(0, 217, 255, 0.3)',
+                  transform: `scale(${1 + (audioIntensity * 0.03)}) translateZ(10px)`,
+                  transition: 'all 0.15s ease-out',
+                  WebkitTextStroke: '0.3px rgba(0, 217, 255, 0.4)',
+                  transformStyle: 'preserve-3d'
                 }}
               >
                 penomovu
               </h1>
-              {/* Animated underline */}
+              {/* Animated underline - more visible and reactive */}
               <div 
-                className="h-0.5 mx-auto mt-1 rounded-full"
+                className="h-1 mx-auto mt-2 rounded-full"
                 style={{
                   background: 'linear-gradient(90deg, transparent, var(--android-led), transparent)',
-                  boxShadow: `0 0 10px var(--android-led)`,
-                  width: `${60 + (frequencyData?.bass || 0) * 40}%`,
-                  transition: 'width 0.2s ease-out'
+                  boxShadow: `0 0 15px var(--android-led), 0 0 30px var(--android-led)`,
+                  width: `${70 + (frequencyData?.bass || 0) * 30}%`,
+                  transition: 'width 0.15s ease-out, box-shadow 0.15s ease-out'
                 }}
               />
             </div>

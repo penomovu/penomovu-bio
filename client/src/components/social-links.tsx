@@ -20,24 +20,6 @@ const socialLinks: SocialLink[] = [
     url: "https://github.com/penomovu",
     icon: SiGithub,
     hoverColor: "hover:bg-primary/10 hover:border-primary/30"
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/penomovu",
-    icon: SiLinkedin,
-    hoverColor: "hover:bg-primary/10 hover:border-primary/30"
-  },
-  {
-    name: "X (Twitter)",
-    url: "https://twitter.com/penomovu",
-    icon: SiX,
-    hoverColor: "hover:bg-primary/10 hover:border-primary/30"
-  },
-  {
-    name: "Stack Overflow",
-    url: "https://stackoverflow.com/users/penomovu",
-    icon: SiStackoverflow,
-    hoverColor: "hover:bg-primary/10 hover:border-primary/30"
   }
 ];
 
@@ -49,7 +31,7 @@ export default function SocialLinks() {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+    <div className="flex flex-col gap-2">
       {socialLinks.map((link) => {
         const IconComponent = link.icon;
         const isHovered = hoveredLink === link.name;

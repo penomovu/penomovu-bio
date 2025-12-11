@@ -6,16 +6,17 @@ export default function CurrentlyPlaying() {
 
   return (
     <div 
-      className="fixed bottom-6 left-6 z-20 transition-all duration-500 group diagnostic-panel hud-border"
+      className="fixed bottom-6 left-6 z-20 transition-all duration-300 group diagnostic-panel hud-border"
       style={{
-        padding: '0.875rem 1rem',
+        padding: '0.75rem 0.875rem',
         fontSize: '0.875rem',
         color: 'var(--foreground)',
-        maxWidth: '280px',
-        border: '1px solid rgba(0, 217, 255, 0.3)',
+        maxWidth: '260px',
+        border: '1px solid rgba(0, 217, 255, 0.25)',
         boxShadow: isHovered 
-          ? '0 12px 48px hsla(0, 0%, 0%, 0.6), 0 0 40px var(--android-led), inset 0 0 20px rgba(0, 217, 255, 0.1)' 
-          : '0 8px 32px hsla(0, 0%, 0%, 0.5), 0 0 20px var(--android-led)'
+          ? '0 8px 32px hsla(0, 0%, 0%, 0.5), 0 0 30px rgba(0, 217, 255, 0.4), inset 0 0 15px rgba(0, 217, 255, 0.06)' 
+          : '0 4px 20px hsla(0, 0%, 0%, 0.4), 0 0 15px rgba(0, 217, 255, 0.2)',
+        transform: isHovered ? 'translateY(-2px) scale(1.02)' : 'translateY(0) scale(1)',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

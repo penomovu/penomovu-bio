@@ -429,14 +429,15 @@
   height: 100%;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 217, 255, 0.03) 0px,
-    rgba(0, 217, 255, 0.03) 1px,
+    rgba(0, 217, 255, 0.015) 0px,
+    rgba(0, 217, 255, 0.015) 1px,
     transparent 1px,
     transparent 2px
   );
   pointer-events: none;
   z-index: 1000;
   animation: scanline-move 8s linear infinite;
+  opacity: 0.5;
 }
 
 @keyframes scanline-move {
@@ -578,12 +579,13 @@
   border-right-color: transparent;
 }
 
-/* Circuit pattern background */
+/* Circuit pattern background - more subtle */
 .circuit-pattern {
   background-image: 
-    linear-gradient(90deg, rgba(0, 217, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(0, 217, 255, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
+    linear-gradient(90deg, rgba(0, 217, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(rgba(0, 217, 255, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.4;
 }
 
 /* Holographic effect */
@@ -683,17 +685,18 @@
   border-top: none;
 }
 
-/* Diagnostic panel styling */
+/* Diagnostic panel styling - more transparent for better photo visibility */
 .diagnostic-panel {
   background: linear-gradient(
     135deg,
-    rgba(0, 30, 60, 0.9) 0%,
-    rgba(0, 20, 40, 0.95) 100%
+    rgba(0, 30, 60, 0.5) 0%,
+    rgba(0, 20, 40, 0.6) 100%
   );
   border: 1px solid rgba(0, 217, 255, 0.3);
   box-shadow: 
     0 0 30px rgba(0, 217, 255, 0.2),
     inset 0 0 30px rgba(0, 217, 255, 0.05);
+  backdrop-filter: blur(16px) saturate(180%);
 }
 
 /* Probability indicator */
