@@ -33,8 +33,6 @@ export default function ProfileCard() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Glow Ring Effect */}
-        <div className={`glow-ring ${isHovered ? 'active' : ''}`} />
         {/* Animated background gradient overlay */}
         <div 
           className="absolute inset-0 opacity-20 transition-opacity duration-500"
